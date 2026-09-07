@@ -5,183 +5,120 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ciubi — Ecosistem local românesc | Pitch sponsor</title>
 <style>
-  :root{--o:#f5a623;--g:#2e7d32;--b:#163f80;--t:#5d4037;--ink:#1c2430;--mut:#5b6472;--bg:#faf8f4;--card:#ffffff;}
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;}
-  .wrap{max-width:960px;margin:0 auto;padding:0 18px;}
-  .hero{background:linear-gradient(135deg,#0f1729,#1a2b4a);color:#fff;padding:56px 0 48px;}
-  .brand{font-weight:900;letter-spacing:2px;font-size:.9rem;color:var(--o);margin-bottom:10px;}
-  h1{font-size:2rem;line-height:1.2;margin-bottom:12px;}
-  h1 .o{color:var(--o);}
-  .sub{color:#c8d2e4;max-width:640px;margin-bottom:22px;}
-  .ctas{display:flex;gap:10px;flex-wrap:wrap;}
-  .btn{display:inline-block;padding:11px 18px;border-radius:12px;font-weight:700;text-decoration:none;font-size:.92rem;}
-  .btn.o{background:var(--o);color:#1a1200;}
-  .btn.g{background:var(--g);color:#fff;}
-  .btn.t{background:var(--t);color:#fff;}
-  section{margin:44px 0;}
-  h2{font-size:1.25rem;margin-bottom:14px;}
-  h2 small{color:var(--mut);font-weight:500;font-size:.85rem;}
-  .grid{display:grid;gap:14px;}
-  .two{grid-template-columns:1fr;}
-  @media(min-width:760px){.two{grid-template-columns:1fr 1fr;}.three{grid-template-columns:1fr 1fr 1fr;}}
-  .three{grid-template-columns:1fr;}
-  .card{background:var(--card);border:1px solid #e8e2d8;border-radius:16px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.04);}
-  .card.co{border-top:4px solid var(--o);}
-  .card.cg{border-top:4px solid var(--g);}
-  .card.ct{border-top:4px solid var(--t);}
-  .card h3{font-size:1rem;margin-bottom:4px;}
-  .card .tag{font-size:.75rem;color:var(--mut);margin-bottom:10px;}
-  ul{list-style:none;}
-  ul li{padding:5px 0 5px 22px;position:relative;font-size:.9rem;}
-  ul li:before{content:"✔";position:absolute;left:0;font-size:.8rem;}
-  .co ul li:before{color:var(--o);}
-  .cg ul li:before{color:var(--g);}
-  .ct ul li:before{color:var(--t);}
-  .stats{grid-template-columns:repeat(2,1fr);}
-  @media(min-width:760px){.stats{grid-template-columns:repeat(4,1fr);}}
-  .stat{background:var(--card);border:1px solid #e8e2d8;border-radius:14px;padding:14px;text-align:center;}
-  .stat b{display:block;font-size:1.3rem;}
-  .stat span{font-size:.75rem;color:var(--mut);}
-  .stat.o b{color:var(--o);} .stat.g b{color:var(--g);} .stat.b b{color:var(--b);} .stat.t b{color:var(--t);}
-  ol{padding-left:20px;}
-  ol li{padding:4px 0;font-size:.92rem;}
-  .price{font-size:.8rem;color:var(--mut);margin-top:8px;}
-  .contact{border-top:4px solid var(--b);}
-  .contact p{font-size:.92rem;padding:3px 0;}
-  footer{padding:26px 0 34px;text-align:center;color:var(--mut);font-size:.8rem;}
-  .note{font-size:.78rem;color:var(--mut);margin-top:10px;}
-  .diagram{background:var(--card);border:1px solid #e8e2d8;border-radius:16px;padding:22px;text-align:center;margin-top:10px;}
-  .diagram .row{display:flex;justify-content:space-around;flex-wrap:wrap;gap:12px;margin-top:14px;}
-  .diagram .pill{padding:10px 16px;border-radius:12px;font-weight:700;font-size:.85rem;color:#fff;}
-  .pill.o{background:var(--o);color:#1a1200;} .pill.g{background:var(--g);} .pill.t{background:var(--t);}
+:root{--port:#e85d04;--verde:#2d6a4f;--maro:#6b4423;--bg:#fafaf7;--ink:#1c2430;--mut:#6b7280;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:720px;margin:0 auto;padding:20px;}
+h1,h2,h3{color:var(--ink);margin-bottom:8px;}
+.hero{text-align:center;padding:40px 20px;background:linear-gradient(135deg,#fff8f0,#f0fff4);}
+.hero h1{font-size:2rem;margin-bottom:10px;}
+.hero p{color:var(--mut);max-width:520px;margin:0 auto 20px;}
+.btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.btn{padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.85rem;border:2px solid;}
+.btn-port{background:var(--port);color:#fff;border-color:var(--port);}
+.btn-verde{background:var(--verde);color:#fff;border-color:var(--verde);}
+.btn-maro{background:var(--maro);color:#fff;border-color:var(--maro);}
+.section{margin:30px 0;}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px;}
+.card{background:#fff;border:1px solid #e5e5e5;border-radius:14px;padding:18px;}
+.card h3{font-size:1rem;margin-bottom:8px;}
+.card ul{font-size:.85rem;color:var(--mut);padding-left:20px;}
+.card li{margin:4px 0;}
+.eco{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;margin:20px 0;}
+.eco div{padding:14px;border-radius:12px;font-weight:700;color:#fff;font-size:.9rem;}
+.eco .t{background:var(--port);}
+.eco .p{background:var(--verde);}
+.eco .m{background:var(--maro);}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px;}
+.stat{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:16px;text-align:center;}
+.stat b{display:block;font-size:1.5rem;color:var(--verde);}
+.stat small{color:var(--mut);font-size:.78rem;}
+.roadmap{list-style:none;counter-reset:step;}
+.roadmap li{counter-increment:step;padding:12px 12px 12px 48px;background:#fff;border:1px solid #e5e5e5;border-radius:10px;margin:8px 0;position:relative;font-size:.9rem;}
+.roadmap li::before{content:counter(step);position:absolute;left:12px;top:12px;width:26px;height:26px;background:var(--verde);color:#fff;border-radius:50%;text-align:center;line-height:26px;font-weight:700;font-size:.85rem;}
+.pack{background:#fff;border:1px solid #e5e5e5;border-radius:14px;padding:18px;margin:10px 0;}
+.pack h3{font-size:1rem;}
+.pack .price{font-weight:700;color:var(--port);font-size:.85rem;margin:6px 0;}
+.contact{background:var(--ink);color:#fff;border-radius:14px;padding:24px;margin-top:30px;}
+.contact b{color:var(--port);}
+.contact a{color:#fff;text-decoration:underline;}
+footer{text-align:center;color:var(--mut);font-size:.75rem;margin-top:20px;}
 </style>
 </head>
 <body>
+<div class="wrap">
+<div class="hero">
+<h1>CIUBI · Ecosistem local</h1>
+<p><b>Trei aplicații, un singur ecosistem românesc:</b> trading, hrană & servicii locale</p>
+<p>Un ecosistem digital construit de la zero, fără buget, care conectează trei tipuri de utilizatori români care astăzi nu au o platformă dedicată: traderii, producătorii agricoli și meșteșugarii / furnizorii de servicii locale. Toate trei se promovează reciproc.</p>
+<div class="btn-row">
+<a href="https://cluj1313.github.io/ciubi-trading-companion-v2/" class="btn btn-port">📈 Trading Companion</a>
+<a href="https://aprozar-romanesc-ro.grok.me/" class="btn btn-verde">🥕 Aprozar Românesc</a>
+<a href="https://cluj1313.github.io/" class="btn btn-maro">🧰 Servicii Locale</a>
+</div>
+</div>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="brand">CIUBI · ECOSISTEM LOCAL</div>
-    <h1>Trei aplicații, un singur <span class="o">ecosistem românesc</span>: trading, hrană &amp; servicii locale</h1>
-    <p class="sub">Un ecosistem digital construit de la zero, fără buget, care conectează trei tipuri de utilizatori români care astăzi nu au o platformă dedicată: <b>traderii</b>, <b>producătorii agricoli</b> și <b>meșteșugarii / furnizorii de servicii locale</b>. Toate trei se promovează reciproc.</p>
-    <div class="ctas">
-      <a class="btn o" href="https://cluj1313.github.io/ciubi-trading-companion-v2/" target="_blank">📈 Trading Companion</a>
-      <!-- Când Aprozar primește domeniu propriu, înlocuiește linkul de mai jos -->
-      <a class="btn g" href="https://aprozar-romanesc-ro.grok.me/" target="_blank">🥕 Aprozar Românesc</a>
-      <a class="btn t" href="https://cluj1313.github.io/" target="_blank">🧰 Servicii Locale</a>
-    </div>
-  </div>
-</header>
+<div class="section">
+<h2>Cele trei produse</h2>
+<div class="grid-3">
+<div class="card"><h3>📈 Ciubi Trading Companion</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Asistentul de disciplină al traderului</p><ul><li>Plan pre-trade cu checklist SMC</li><li><b>Funded Shield</b>: limită zilnică & drawdown cu alertă STOP</li><li>Alerte live (preț, sesiuni, lumânări)</li><li>Jurnal cu poze, curbă equity, CSV</li><li>Calculator poziție + review zilnic</li><li>PWA instalabilă pe telefon</li></ul></div>
+<div class="card"><h3>🥕 Aprozar Românesc</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Piața satului, fără intermediari</p><ul><li>Producători și ferme pe hartă</li><li>„Poveștile fermierilor" — autentic</li><li>Categorii: fructe, legume, lactate, cereale</li><li>Sponsor activ: <b>Dor de Casă</b> (300+ magazine)</li><li>🚀 <b>UPDATE major în curând</b></li></ul></div>
+<div class="card"><h3>🧰 Servicii Locale</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Meșteșugarii orașului tău, la un click</p><ul><li>12 categorii: babysitter, croitorie, curățenie, electric, instalații, IT, tapiserie, trading, transport etc.</li><li>Profile cu preț, locație, recenzii</li><li>Specialiștii se înscriu gratuit</li><li>Localizare pe oraș (Gherla → extensibil)</li><li>Model scalabil la nivel național</li></ul></div>
+</div>
+</div>
 
-<main class="wrap">
+<div class="section">
+<h2>De ce funcționează — triunghiul ecosistemului</h2>
+<p style="color:var(--mut);font-size:.9rem;">Fiecare aplicație rezolvă o nevoie reală a unei categorii de români, iar împreună formează un <b>circuit închis de încredere locală</b>:</p>
+<div class="eco"><div class="t">📈 Traderi</div><div class="p">🥕 Producători</div><div class="m">🧰 Meșteșugari</div></div>
+<p style="font-size:.88rem;text-align:center;color:var(--mut);margin-bottom:20px;">Traderul cumpără de la Aprozar · fermierul angajează un instalator de pe Servicii Locale · meșteșugarul investește profitul cu Trading Companion.</p>
 
-  <section>
-    <h2>Cele trei produse</h2>
-    <div class="grid three">
-      <div class="card co">
-        <h3>📈 Ciubi Trading Companion</h3>
-        <div class="tag">Asistentul de disciplină al traderului</div>
-        <ul>
-          <li>Plan pre-trade cu checklist SMC</li>
-          <li><b>Funded Shield</b>: limită zilnică &amp; drawdown cu alertă STOP</li>
-          <li>Alerte live (preț, sesiuni, lumânări)</li>
-          <li>Jurnal cu poze, curbă equity, CSV</li>
-          <li>Calculator poziție + review zilnic</li>
-          <li>PWA instalabilă pe telefon</li>
-        </ul>
-      </div>
-      <div class="card cg">
-        <h3>🥕 Aprozar Românesc</h3>
-        <div class="tag">Piața satului, fără intermediari</div>
-        <ul>
-          <li>Producători și ferme pe hartă</li>
-          <li>„Poveștile fermierilor” — autentic</li>
-          <li>Categorii: fructe, legume, lactate, cereale</li>
-          <li>Sponsor activ: <b>Dor de Casă</b> (300+ magazine)</li>
-          <li>🚀 <b>UPDATE major în curând</b></li>
-        </ul>
-      </div>
-      <div class="card ct">
-        <h3>🧰 Servicii Locale</h3>
-        <div class="tag">Meșteșugarii orașului tău, la un click</div>
-        <ul>
-          <li>12 categorii: babysitter, croitorie, curățenie, electric, instalații, IT, tapiserie, trading, transport etc.</li>
-          <li>Profile cu preț, locație, recenzii</li>
-          <li>Specialiștii se înscriu gratuit</li>
-          <li>Localizare pe oraș (Gherla → extensibil)</li>
-          <li>Model scalabil la nivel național</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<div class="grid-3">
+<div class="card"><h3>🔁 Cross-promo triplu</h3><p style="font-size:.85rem;color:var(--mut);">Fiecare aplicație are un banner către celelalte două. Utilizatorul rămâne în ecosistem.</p></div>
+<div class="card"><h3>🎨 Identitate unitară</h3><p style="font-size:.85rem;color:var(--mut);">Portocaliu = trading · Verde = hrană · Maro = servicii. Recunoaștere instant.</p></div>
+<div class="card"><h3>🇷🇴 Construit în România</h3><p style="font-size:.85rem;color:var(--mut);">Totul este gândit pentru realități locale: sate, orașe mici, comunități reale.</p></div>
+</div>
+</div>
 
-  <section>
-    <h2>De ce funcționează <small>— triunghiul ecosistemului</small></h2>
-    <div class="diagram">
-      <p style="font-size:.9rem">Fiecare aplicație rezolvă o nevoie reală a unei categorii de români, iar împreună formează un <b>circuit închis de încredere locală</b>:</p>
-      <div class="row">
-        <div class="pill o">📈 Traderi</div>
-        <div class="pill g">🥕 Producători</div>
-        <div class="pill t">🧰 Meșteșugari</div>
-      </div>
-      <p style="margin-top:14px;font-size:.85rem;color:var(--mut)">Traderul cumpără de la Aprozar · fermierul angajează un instalator de pe Servicii Locale · meșteșugarul investește profitul cu Trading Companion.</p>
-    </div>
+<div class="section">
+<h2>Cifre & stadiu actual</h2>
+<div class="stats">
+<div class="stat"><b>+7.3R</b><small>performanță în Trading Companion</small></div>
+<div class="stat"><b>30+</b><small>instrumente cu preț live</small></div>
+<div class="stat"><b>1</b><small>sponsor activ (Dor de Casă)</small></div>
+<div class="stat"><b>12</b><small>categorii de servicii locale</small></div>
+</div>
+<p style="font-size:.85rem;color:var(--mut);margin-top:16px;text-align:center;">Toate trei aplicațiile sunt prototipuri funcționale, publicate și testate pe telefon, construite fără buget. Următorul pas este scalarea — exact ceea ce finanțează un sponsor.</p>
+</div>
 
-    <div class="grid three" style="margin-top:16px;">
-      <div class="card"><h3>🔁 Cross-promo triplu</h3><p style="font-size:.9rem">Fiecare aplicație are un banner către celelalte două. Utilizatorul rămâne în ecosistem.</p></div>
-      <div class="card"><h3>🎨 Identitate unitară</h3><p style="font-size:.9rem">Portocaliu = trading · Verde = hrană · Maro = servicii. Recunoaștere instant.</p></div>
-      <div class="card"><h3>🇷🇴 Construit în România</h3><p style="font-size:.9rem">Totul este gândit pentru realități locale: sate, orașe mici, comunități reale.</p></div>
-    </div>
-  </section>
+<div class="section">
+<h2>Ce finanțează sponsorul — roadmap concret</h2>
+<ol class="roadmap">
+<li><b>Conturi & sincronizare în cloud</b> — datele utilizatorilor, sigure, pe orice device.</li>
+<li><b>Notificări push</b> — alertele funcționează și cu aplicația închisă.</li>
+<li><b>Domenii proprii .ro</b> — identitate profesională pentru toate trei aplicațiile.</li>
+<li><b>Campanie de lansare coordonată</b> — promovare simultană în trei comunități.</li>
+<li><b>Extindere națională</b> — Aprozar pe toată țara, Servicii Locale în 10 orașe.</li>
+</ol>
+</div>
 
-  <section>
-    <h2>Cifre &amp; stadiu actual</h2>
-    <div class="grid stats">
-      <div class="stat o"><b>+7.3R</b><span>performanță în Trading Companion</span></div>
-      <div class="stat o"><b>30+</b><span>instrumente cu preț live</span></div>
-      <div class="stat g"><b>1</b><span>sponsor activ (Dor de Casă)</span></div>
-      <div class="stat t"><b>12</b><span>categorii de servicii locale</span></div>
-    </div>
-    <p class="note">Toate trei aplicațiile sunt prototipuri funcționale, publicate și testate pe telefon, construite fără buget. Următorul pas este scalarea — exact ceea ce finanțează un sponsor.</p>
-  </section>
+<div class="section">
+<h2>Pachete de sponsorizare</h2>
+<div class="pack"><h3>🏆 Partener Fondator</h3><p style="font-size:.85rem;color:var(--mut);">Logo pe pagina principală în <b>TOATE TREI</b> aplicațiile + banner dedicat + mențiune în materiale, 12 luni.</p><div class="price">Ofertă personalizată</div></div>
+<div class="pack"><h3>🤝 Partener</h3><p style="font-size:.85rem;color:var(--mut);">Banner rotativ în două dintre aplicații + prezentare dedicată, 6 luni.</p><div class="price">Ofertă personalizată</div></div>
+<div class="pack"><h3>🌱 Susținător</h3><p style="font-size:.85rem;color:var(--mut);">Mențiune permanentă în secțiunea „Despre" a unei aplicații + recunoștință publică.</p><div class="price">Ofertă personalizată</div></div>
+<p style="font-size:.8rem;color:var(--mut);margin-top:10px;">Model dovedit: sponsorul <b>Dor de Casă</b> este deja integrat în Aprozar Românesc, cu banner propriu și butoane către magazinele sale.</p>
+</div>
 
-  <section>
-    <h2>Ce finanțează sponsorul <small>— roadmap concret</small></h2>
-    <div class="card">
-      <ol>
-        <li><b>Conturi &amp; sincronizare în cloud</b> — datele utilizatorilor, sigure, pe orice device.</li>
-        <li><b>Notificări push</b> — alertele funcționează și cu aplicația închisă.</li>
-        <li><b>Domenii proprii .ro</b> — identitate profesională pentru toate trei aplicațiile.</li>
-        <li><b>Campanie de lansare coordonată</b> — promovare simultană în trei comunități.</li>
-        <li><b>Extindere națională</b> — Aprozar pe toată țara, Servicii Locale în 10 orașe.</li>
-      </ol>
-    </div>
-  </section>
-
-  <section>
-    <h2>Pachete de sponsorizare</h2>
-    <div class="grid three">
-      <div class="card co"><h3>🏆 Partener Fondator</h3><p style="font-size:.9rem">Logo pe pagina principală în <b>TOATE TREI</b> aplicațiile + banner dedicat + mențiune în materiale, 12 luni.</p><div class="price">Ofertă personalizată</div></div>
-      <div class="card"><h3>🤝 Partener</h3><p style="font-size:.9rem">Banner rotativ în două dintre aplicații + prezentare dedicată, 6 luni.</p><div class="price">Ofertă personalizată</div></div>
-      <div class="card cg"><h3>🌱 Susținător</h3><p style="font-size:.9rem">Mențiune permanentă în secțiunea „Despre” a unei aplicații + recunoștință publică.</p><div class="price">Ofertă personalizată</div></div>
-    </div>
-    <p class="note">Model dovedit: sponsorul Dor de Casă este deja integrat în Aprozar Românesc, cu banner propriu și butoane către magazinele sale.</p>
-  </section>
-
-  <section>
-    <div class="card contact">
-      <h2>📬 Contact</h2>
-      <!-- ÎNLOCUIEȘTE datele de mai jos cu datele tale reale de contact -->
-      <p><b>Nume:</b> [Numele tău]</p>
-      <p><b>Email:</b> [email@exemplu.ro]</p>
-      <p><b>Telefon / WhatsApp:</b> [07xx xxx xxx]</p>
-      <p><b>Link-uri live:</b> Trading Companion · Aprozar Românesc · Servicii Locale</p>
-    </div>
-  </section>
-
-</main>
+<div class="contact">
+<h2 style="color:#fff;">📬 Contact</h2>
+<p style="margin-top:12px;"><b>Nume:</b> Cioban Iosif Gabriel</p>
+<p><b>Email:</b> <a href="mailto:cluj1313@gmail.com">cluj1313@gmail.com</a></p>
+<p><b>Telefon / WhatsApp:</b> <a href="https://wa.me/40770148119">0770 148 119</a></p>
+<p style="margin-top:16px;font-size:.85rem;"><b>Link-uri live:</b> <a href="https://cluj1313.github.io/ciubi-trading-companion-v2/">Trading Companion</a> · <a href="https://aprozar-romanesc-ro.grok.me/">Aprozar Românesc</a> · <a href="https://cluj1313.github.io/">Servicii Locale</a></p>
+</div>
 
 <footer>Ciubi · Construit în România · 2026</footer>
-
+</div>
 </body>
 </html>
