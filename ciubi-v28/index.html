@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ciubi Trading Companion</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#070b14">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+  :root{--bg:#070b14;--bg-2:#0b111f;--card:#0f1729;--card-2:#111a2e;--border:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.16);--text:#e7ecf6;--text-dim:#8291ac;--text-faint:#8b9bb4;--orange:#f5a623;--orange-2:#f7931e;--green:#3ee6a6;--red:#fb7185;--radius:18px;}
+  body.light{--bg:#f2f4f8;--bg-2:#ffffff;--card:#ffffff;--card-2:#e9edf3;--border:rgba(20,30,55,.10);--border-strong:rgba(20,30,55,.20);--text:#18213a;--text-dim:#4d5a75;--text-faint:#7c8699;--orange:#d97b00;--orange-2:#c96f00;--green:#0c8f60;--red:#cf3d5e;}
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:16px;font-size:14px;}
+  .app{max-width:760px;margin:0 auto;padding:10px 10px 4px;}
+  header.top{margin-bottom:6px;}
+  h1.logo{font-size:1.05rem;font-weight:800;letter-spacing:.2px;margin:0;display:inline;}
+  h1.logo span{color:var(--orange);}
+  nav.tabs{display:flex;gap:5px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;}
+  nav.tabs::-webkit-scrollbar{display:none;}
+  nav.tabs button{flex:0 0 auto;background:var(--card);border:1px solid var(--border);color:var(--text-dim);padding:6px 12px;border-radius:999px;font-size:.78rem;cursor:pointer;transition:border-color .15s,color .15s;}
+  nav.tabs button.active{border-color:var(--orange);color:var(--orange);}
+  hr.divider{border:none;border-top:1px solid var(--border);margin:2px 0 8px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:9px 12px;margin-bottom:6px;}
+  .card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:2px;gap:8px;}
+  .card-head h2{font-size:.88rem;margin:0;font-weight:700;}
+  .card-sub{color:var(--text-dim);font-size:.72rem;margin:2px 0 8px;line-height:1.35;}
+  .pill{font-size:.62rem;letter-spacing:.5px;color:var(--text-dim);border:1px solid var(--border-strong);padding:3px 9px;border-radius:999px;white-space:nowrap;}
+  .pill.on{color:var(--orange);border-color:var(--orange);}
+  .pill.good{color:var(--green);border-color:var(--green);}
+  .pill.bad{color:var(--red);border-color:var(--red);}
+  .field{margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .field label{display:block;flex:0 0 84px;font-size:.58rem;letter-spacing:.5px;color:var(--text-faint);margin:0;text-transform:uppercase;}
+  .field input,.field select,.field textarea{flex:1;min-width:0;width:100%;background:var(--bg-2);border:1px solid var(--border);color:var(--text);padding:6px 9px;border-radius:8px;font-size:.78rem;outline:none;font-family:inherit;}
+  .field input::placeholder,.field textarea::placeholder{color:var(--text-faint);}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange);}
+  .field.stacked{display:block;}
+  .field.stacked label{flex:none;display:block;margin-bottom:3px;}
+  .field textarea{resize:vertical;min-height:40px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .btn{display:inline-block;background:linear-gradient(180deg,var(--orange),var(--orange-2));color:#1a1200;border:none;padding:10px 16px;border-radius:10px;font-size:.85rem;font-weight:700;cursor:pointer;width:100%;text-align:center;}
+  .btn:active{transform:translateY(1px);}
+  .btn.secondary{background:transparent;color:var(--text-dim);border:1px solid var(--border-strong);font-weight:600;width:auto;}
+  .btn.danger{background:transparent;color:var(--red);border:1px solid var(--red);font-weight:600;width:auto;padding:6px 12px;font-size:.72rem;}
+  .btn.small{width:auto;padding:6px 12px;font-size:.72rem;}
+  .step{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:8px;overflow:hidden;}
+  .step.open{border-color:var(--orange);}
+  .step-head{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;cursor:pointer;}
+  .step-head .num{color:var(--orange);font-weight:800;margin-right:8px;letter-spacing:.5px;font-size:.78rem;}
+  .step-head .title{font-weight:700;font-size:.85rem;}
+  .step-head .left{display:flex;align-items:center;}
+  .step-body{padding:0 14px 14px;}
+  .status{font-size:.62rem;letter-spacing:1px;color:var(--text-faint);}
+  .status.open{color:var(--orange);}
+  .status.done{color:var(--green);}
+  .stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:6px 12px;margin-bottom:5px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .stat label{font-size:.6rem;letter-spacing:.8px;color:var(--text-faint);margin:0;text-transform:uppercase;}
+  .stat .val{font-size:.95rem;font-weight:800;line-height:1.1;}
+  .val.green{color:var(--green);}
+  .val.red{color:var(--red);}
+  .val.orange{color:var(--orange);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .grid4{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+  @media(min-width:520px){.grid4{grid-template-columns:repeat(4,1fr);}}
+  .breakdown-row{display:flex;align-items:center;justify-content:space-between;background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:5px 10px;margin-bottom:4px;font-size:.75rem;gap:6px;}
+  .breakdown-row .name{font-weight:700;letter-spacing:.2px;white-space:nowrap;}
+  .breakdown-row .mid{color:var(--text-dim);font-size:.68rem;text-align:center;}
+  .breakdown-row .r{font-weight:700;white-space:nowrap;}
+  table.journal{width:100%;border-collapse:collapse;font-size:.72rem;}
+  table.journal th{text-align:left;color:var(--text-faint);font-weight:600;letter-spacing:.5px;text-transform:uppercase;font-size:.58rem;padding:0 8px 6px 0;border-bottom:1px solid var(--border);white-space:nowrap;}
+  table.journal td{padding:6px 8px 6px 0;border-bottom:1px solid var(--border);white-space:nowrap;}
+  .table-wrap{overflow-x:auto;}
+  .empty{color:var(--text-faint);text-align:center;padding:14px 8px;font-size:.78rem;}
+  .checklist-item{display:flex;align-items:center;gap:9px;padding:5px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+  .checklist-item:last-child{border-bottom:none;}
+  .checkbox{width:18px;height:18px;border-radius:6px;border:1.5px solid var(--border-strong);flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-size:.68rem;color:transparent;}
+  .checkbox.checked{background:var(--orange);border-color:var(--orange);color:#1a1200;font-weight:800;}
+  .checklist-item span.txt{font-size:.78rem;color:var(--text);}
+  .checklist-item.checked span.txt{color:var(--text-dim);text-decoration:line-through;}
+  .footer-note{text-align:center;color:var(--text-faint);font-size:.64rem;margin:10px 0 2px;}
+  .small-note{color:var(--text-faint);font-size:.68rem;line-height:1.4;}
+  select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238291ac' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 10px center;background-size:14px;}
+  .link-btn{background:none;border:none;color:var(--orange);font-size:.72rem;cursor:pointer;padding:0;font-weight:600;}
+  .mini-stat-label{display:block;font-size:.58rem;letter-spacing:.8px;color:var(--text-faint);margin-bottom:3px;text-transform:uppercase;}
+  .mini-stat-val{font-size:.95rem;font-weight:800;}
+  .tag{display:inline-flex;align-items:center;gap:7px;background:var(--bg-2);border:1px solid var(--border);border-radius:999px;padding:4px 11px;font-size:.72rem;font-weight:700;margin:0 4px 4px 0;}
+  .shield-ok{border:1px solid var(--green);color:var(--green);border-radius:10px;padding:8px 10px;font-size:.75rem;font-weight:700;margin-bottom:6px;background:rgba(62,230,166,.06);}
+  .shield-warn{border:1px solid var(--orange);color:var(--orange);border-radius:10px;padding:8px 10px;font-size:.75rem;font-weight:700;margin-bottom:6px;background:rgba(245,166,35,.08);}
+  .shield-stop{border:2px solid var(--red);color:var(--red);border-radius:12px;padding:14px 10px;font-size:1rem;font-weight:800;text-align:center;margin-bottom:8px;letter-spacing:.5px;background:rgba(251,113,133,.12);}
+  .sess{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;}
+  .sess-item{flex:1;min-width:100px;background:var(--bg-2);border:1px solid var(--border);border-radius:10px;padding:6px 10px;font-size:.7rem;line-height:1.4;}
+  .sess-item.open{border-color:var(--green);color:var(--green);}
+  .sess-item.closed{color:var(--text-faint);}
+  .news-row{display:flex;justify-content:space-between;gap:8px;font-size:.72rem;padding:4px 0;border-bottom:1px solid var(--border);}
+  .news-row:last-child{border-bottom:none;}
+  .ta-check{display:flex;align-items:center;gap:8px;font-size:.75rem;padding:3px 0;color:var(--text);}
+  .ta-check input{width:16px;height:16px;accent-color:var(--orange);}
+  #undo-btn{position:fixed;right:12px;bottom:12px;z-index:50;background:var(--card-2);color:var(--text);border:1px solid var(--orange);border-radius:999px;padding:9px 16px;font-size:.78rem;font-weight:700;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.5);}
+  #theme-btn{position:fixed;right:12px;bottom:56px;z-index:50;background:var(--card-2);color:var(--text);border:1px solid var(--border-strong);border-radius:999px;padding:9px 13px;font-size:.85rem;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.5);}
+</style>
+</head>
+<body>
+<div class="app" id="app"></div>
+
+<script>
+const DEFAULT_STATE = {
+  tab: 'dashboard',
+  theme: 'dark',
+  plan: { pair:'', direction:'', htfBias:'', session:'', setup:'', setupNotes:'', riskPercent:'', plannedRR:'', checklist:Array(10).fill(false), decision:'' },
+  planActive: false,
+  activeExecution: { entry:'', sl:'', tp:'', exit:'', executionQuality:'Clean', entryStatus:'Waiting' },
+  trades: [],
+  alerts: [],
+  nextFocus: '',
+  shield: { enabled:false, account:'10000', dailyPct:'4', maxDDPct:'8', riskPerTrade:'100' },
+  instruments: ['EURUSD','GBPUSD','USDJPY','USDCHF','AUDUSD','NZDUSD','USDCAD','XAUUSD'],
+  alertGroups: {
+    forex: ['AUDCAD','AUDJPY','AUDNZD','AUDUSD','CADJPY','CHFJPY','EURAUD','EURCAD','EURCHF','EURGBP','EURJPY','EURNZD','EURUSD','GBPAUD','GBPCAD','GBPCHF','GBPJPY','GBPNZD','GBPUSD','NZDJPY','NZDUSD','USDCAD','USDCHF','USDJPY'],
+    stocks: ['DXY','ES','NQ','YM','XAGUSD','XAUUSD','BTCUSD','BNBUSD','ETHUSD','SOLUSD']
+  },
+  timeAlerts: { asia_open:true, asia_close:true, lon_open:true, lon_close:true, ny_open:true, ny_close:true, c1h:false, c4h:true, cdaily:true, cweekly:false },
+  timeLog: [],
+  dailyReviews: {},
+  quickTrade: { pair:'EURUSD', direction:'BUY', htfBias:'BULLISH', date: new Date().toISOString().slice(0,10), setup:'A+', entry:'', sl:'', exit:'', resultR:'', note:'Clean trade', ruleCompliance:'100% — followed rules', session:'London', additionalNote:'', photo:'' }
+};
+
+let state = JSON.parse(JSON.stringify(DEFAULT_STATE));
+const HAS_WS = (typeof window.storage !== 'undefined') && window.storage && (typeof window.storage.get === 'function');
+
+/* ---------------- UNDO + autosave ---------------- */
+let undoStack = [];
+let snapshot = null;
+let saveTimeout;
+
+async function writeState(raw){
+  try{
+    if(HAS_WS){ await window.storage.set('ciubi_state', raw); }
+    else { localStorage.setItem('ciubi_state', raw); }
+  }catch(e){ console.error('save failed', e); }
+}
+function dataOnly(){
+  const o = JSON.parse(JSON.stringify(state));
+  delete o.tab;
+  return JSON.stringify(o);
+}
+function saveState(withUndo){
+  if(withUndo === undefined) withUndo = true;
+  const cur = dataOnly();
+  if(withUndo && snapshot && cur !== snapshot){
+    undoStack.push(snapshot);
+    if(undoStack.length > 30) undoStack.shift();
+  }
+  snapshot = cur;
+  clearTimeout(saveTimeout);
+  const full = JSON.stringify(state);
+  saveTimeout = setTimeout(()=>{ writeState(full); }, 150);
+  updateUndoBtn();
+}
+function guardState(){
+  if(!state.plan) state.plan = JSON.parse(JSON.stringify(DEFAULT_STATE.plan));
+  if(!state.plan.checklist) state.plan.checklist = Array(10).fill(false);
+  if(!state.trades) state.trades = [];
+  if(!state.alerts) state.alerts = [];
+  if(!state.shield) state.shield = JSON.parse(JSON.stringify(DEFAULT_STATE.shield));
+  if(!state.instruments || !state.instruments.length) state.instruments = JSON.parse(JSON.stringify(DEFAULT_STATE.instruments));
+  if(!state.alertGroups || !state.alertGroups.forex || !state.alertGroups.stocks) state.alertGroups = JSON.parse(JSON.stringify(DEFAULT_STATE.alertGroups));
+  if(!state.timeAlerts) state.timeAlerts = JSON.parse(JSON.stringify(DEFAULT_STATE.timeAlerts));
+  if(!state.timeLog) state.timeLog = [];
+  if(!state.dailyReviews) state.dailyReviews = {};
+  if(!state.theme) state.theme = 'dark';
+}
+function doUndo(){
+  if(!undoStack.length) return;
+  const prev = undoStack.pop();
+  const data = JSON.parse(prev);
+  const keepTab = state.tab;
+  state = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_STATE)), data);
+  state.tab = keepTab;
+  guardState();
+  snapshot = prev;
+  clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(()=>{ writeState(JSON.stringify(state)); }, 150);
+  render();
+}
+function updateUndoBtn(){
+  const b = document.getElementById('undo-btn');
+  if(b) b.textContent = `↩ Undo (${undoStack.length})`;
+}
+
+/* ---------------- TEMA light/dark (V2.19) ---------------- */
+function toggleTheme(){
+  state.theme = state.theme==='light' ? 'dark' : 'light';
+  saveState();
+  applyTheme();
+}
+function applyTheme(){
+  document.body.classList.toggle('light', state.theme==='light');
+  const b = document.getElementById('theme-btn');
+  if(b) b.textContent = state.theme==='light' ? '☀️' : '🌙';
+  const mc = document.querySelector('meta[name="theme-color"]');
+  if(mc) mc.content = state.theme==='light' ? '#f2f4f8' : '#070b14';
+}
+
+async function loadState(){
+  try{
+    let raw = null;
+    if(HAS_WS){
+      const res = await window.storage.get('ciubi_state');
+      if(res && res.value) raw = res.value;
+    } else {
+      raw = localStorage.getItem('ciubi_state');
+    }
+    if(raw){
+      const loaded = JSON.parse(raw);
+      state = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_STATE)), loaded);
+      guardState();
+    }
+  }catch(e){}
+  snapshot = dataOnly();
+  render();
+}
+
+/* ---------------- backup ---------------- */
+function exportBackup(){
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'ciubi-backup-' + new Date().toISOString().slice(0,10) + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+function importBackup(file){
+  const r = new FileReader();
+  r.onload = ()=>{
+    try{
+      const loaded = JSON.parse(r.result);
+      if(!loaded || typeof loaded !== 'object') throw new Error('bad file');
+      state = Object.assign({}, JSON.parse(JSON.stringify(DEFAULT_STATE)), loaded);
+      guardState();
+      saveState();
+      render();
+      alert('✅ Backup restaurat cu succes!');
+    }catch(e){ alert('⚠️ Fișier de backup invalid.'); }
+  };
+  r.readAsText(file);
+}
+
+/* ---------------- CSV export ---------------- */
+function exportCSV(){
+  const rows = [['Date','Pair','Direction','HTF','Setup','Entry','SL','Exit','R','Note','Compliance','Session','AddNote']];
+  state.trades.forEach(t=>{
+    const R = calcR(t);
+    rows.push([t.date,t.pair,t.direction,t.htfBias,t.setup,t.entry,t.sl,t.exit,(R==null?'':R.toFixed(2)),t.note,t.ruleCompliance,t.session,t.additionalNote]);
+  });
+  const csv = '\uFEFF' + rows.map(r=>r.map(v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'ciubi-jurnal-' + new Date().toISOString().slice(0,10) + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(a.href);
+}
+
+/* ---------------- equity curve ---------------- */
+function drawEquity(){
+  const c = document.getElementById('eq-cv');
+  if(!c) return;
+  const closed = closedTrades();
+  const x = c.getContext('2d');
+  const isL = state.theme==='light';
+  if(!closed.length){
+    c.width = c.clientWidth*2; c.height = 200;
+    x.clearRect(0,0,c.width,c.height);
+    x.fillStyle = isL?'#7c8699':'#8b9bb4'; x.font = '22px system-ui';
+    x.fillText('Adaugă trade-uri pentru curba de equity.', 20, 100);
+    return;
+  }
+  let run = 0; const pts = [0];
+  closed.forEach(t=>{ run += t.R; pts.push(run); });
+  const W = c.width = c.clientWidth*2, H = c.height = 360;
+  const mn = Math.min(...pts), mx = Math.max(...pts), pad = (mx-mn)*0.15 || 1;
+  const X = i=>10 + i*(W-20)/(pts.length-1);
+  const Y = v=>H-20 - ((v-(mn-pad))/((mx+pad)-(mn-pad)))*(H-40);
+  x.clearRect(0,0,W,H);
+  if(mn<0 && mx>0){
+    x.strokeStyle = isL?'rgba(0,0,0,.18)':'rgba(255,255,255,.15)'; x.setLineDash([6,6]);
+    x.beginPath(); x.moveTo(10,Y(0)); x.lineTo(W-10,Y(0)); x.stroke(); x.setLineDash([]);
+  }
+  x.beginPath();
+  pts.forEach((v,i)=> i?x.lineTo(X(i),Y(v)):x.moveTo(X(i),Y(v)));
+  const up = pts[pts.length-1] >= 0;
+  x.strokeStyle = up ? (isL?'#0c8f60':'#3ee6a6') : (isL?'#cf3d5e':'#fb7185'); x.lineWidth = 3; x.stroke();
+  x.lineTo(W-10,H); x.lineTo(10,H); x.closePath();
+  x.fillStyle = up ? 'rgba(62,230,166,.10)' : 'rgba(251,113,133,.10)'; x.fill();
+  x.fillStyle = isL?'#7c8699':'#8b9bb4'; x.font = '20px system-ui';
+  x.fillText('max ' + fmtR(mx), 12, 24);
+  x.fillText('min ' + fmtR(mn), 12, H-6);
+}
+
+/* ---------------- calculator pozitie ---------------- */
+function calcPos(){
+  const g = id=>{ const el=document.getElementById(id); return el?parseFloat(el.value):NaN; };
+  const bal = g('pc-bal'), risk = g('pc-risk'), sl = g('pc-sl'), pv = g('pc-pv');
+  const out = document.getElementById('pc-out');
+  if(!out) return;
+  const risk$ = (bal>0 && risk>0) ? bal*risk/100 : 0;
+  const lot = (risk$>0 && sl>0 && pv>0) ? risk$/(sl*pv) : 0;
+  out.innerHTML = lot>0
+    ? `<div class="mini-stat-val" style="color:var(--green)">${lot.toFixed(2)} lot</div><p class="small-note">Risc $${risk$.toFixed(0)} · SL ${sl} pips · pip value $${pv}/lot · Forex major & XAU: 10</p>`
+    : `<p class="small-note">Completează sold, risc %, SL și valoare pip.</p>`;
+}
+
+/* ---------------- poza pe trade ---------------- */
+let pendingPhoto = '';
+function readPhoto(file, cb){
+  const r = new FileReader();
+  r.onload = ()=>{
+    const img = new Image();
+    img.onload = ()=>{
+      const max = 900;
+      let w = img.width, h = img.height;
+      const sc = Math.min(1, max/Math.max(w,h));
+      w = Math.round(w*sc); h = Math.round(h*sc);
+      const cv = document.createElement('canvas');
+      cv.width = w; cv.height = h;
+      cv.getContext('2d').drawImage(img,0,0,w,h);
+      cb(cv.toDataURL('image/jpeg',0.72));
+    };
+    img.src = r.result;
+  };
+  r.readAsDataURL(file);
+}
+function showPhoto(id){
+  const t = state.trades.find(x=>String(x.id)===String(id));
+  if(!t || !t.photo) return;
+  const d = document.createElement('div');
+  d.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:99;display:flex;align-items:center;justify-content:center;padding:16px';
+  d.onclick = ()=>d.remove();
+  d.innerHTML = `<img src="${t.photo}" style="max-width:100%;max-height:92%;border-radius:12px"/>`;
+  document.body.appendChild(d);
+}
+
+/* ---------------- review zilnic ---------------- */
+const DAILY_QS = [
+  'Am respectat planul și checklist-ul azi?',
+  'Am tranzacționat doar în sesiunea potrivită?',
+  'Am respectat riscul maxim pe trade?',
+  'Am evitat revenge / FOMO?',
+  'Am notat toate trade-urile în jurnal?'
+];
+function todayKey(){ return new Date().toISOString().slice(0,10); }
+function dailyRec(){
+  const k = todayKey();
+  if(!state.dailyReviews[k]) state.dailyReviews[k] = {a:[false,false,false,false,false], note:''};
+  return state.dailyReviews[k];
+}
+function setDaily(i, val){
+  dailyRec().a[i] = val;
+  saveState();
+  renderDaily();
+}
+function setDailyNote(v){
+  dailyRec().note = v;
+  saveState();
+}
+function last7HTML(){
+  const rows = [];
+  for(let i=1;i<=7;i++){
+    const d = new Date(Date.now()-i*86400000).toISOString().slice(0,10);
+    const r = state.dailyReviews[d];
+    if(r){
+      const s = (r.a||[]).filter(Boolean).length;
+      rows.push(`<div class="news-row"><span>${d}</span><b>${s}/5</b></div>`);
+    }
+  }
+  return rows.length ? `<p class="small-note" style="margin:6px 0 3px">Ultimele zile:</p>` + rows.join('') : '';
+}
+function renderDaily(){
+  const box = document.getElementById('daily-box');
+  if(!box) return;
+  const r = dailyRec();
+  const score = r.a.filter(Boolean).length;
+  box.innerHTML =
+    DAILY_QS.map((q,i)=>`<label class="ta-check"><input type="checkbox" ${r.a[i]?'checked':''} onchange="setDaily(${i}, this.checked)"/> ${q}</label>`).join('') +
+    `<div class="field stacked" style="margin-top:6px"><label>Notă de seară</label><textarea onchange="setDailyNote(this.value)">${r.note||''}</textarea></div>` +
+    `<p class="small-note">Disciplină azi: <b style="color:${score>=4?'var(--green)':score>=3?'var(--orange)':'var(--red)'}">${score}/5</b></p>` +
+    last7HTML();
+}
+
+/* ---------------- constante ---------------- */
+const CHECKLIST_ITEMS = [
+  'Trend aliniat pe EMA 50/200',
+  'External BOS confirmat',
+  'Continuare structura confirmata',
+  'Lichiditate protejata luata (sweep)',
+  'Pret a ajuns in zona de reactie',
+  'Candela de respingere clara',
+  'MSS pe LTF confirmat',
+  'Risc definit (SL logic, nu arbitrar)',
+  'R:R minim 1:2 disponibil',
+  'Sesiunea si stirile sunt ok'
+];
+const SETUPS = ['A+','A','B','C'];
+const SESSIONS = ['Asia','London','New York','London/NY overlap'];
+
+/* ---------------- ALERTE DE TIMP ---------------- */
+const TIME_EVENTS = [
+  {id:'asia_open',  label:'Asia se deschide (Tokyo)',        tz:'Asia/Tokyo',         min:9*60},
+  {id:'asia_close', label:'Asia se închide',                 tz:'Asia/Tokyo',         min:15*60},
+  {id:'lon_open',   label:'Londra se deschide',              tz:'Europe/London',      min:8*60},
+  {id:'lon_close',  label:'Londra se închide',               tz:'Europe/London',      min:16*60+30},
+  {id:'ny_open',    label:'New York se deschide',            tz:'America/New_York',   min:8*60},
+  {id:'ny_close',   label:'New York se închide',             tz:'America/New_York',   min:17*60},
+  {id:'c1h',        label:'Lumânare 1H închisă',             tz:'UTC', every:60},
+  {id:'c4h',        label:'Lumânare 4H închisă',             tz:'UTC', every:240},
+  {id:'cdaily',     label:'Lumânare Daily închisă (17:00 NY)', tz:'America/New_York', min:17*60},
+  {id:'cweekly',    label:'Lumânare Weekly închisă (vineri)', tz:'America/New_York',  min:17*60, weekday:5}
+];
+const SESSION_EV_IDS = ['asia_open','asia_close','lon_open','lon_close','ny_open','ny_close'];
+const CANDLE_EV_IDS = ['c1h','c4h','cdaily','cweekly'];
+const WD = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+
+function wall(tz){
+  try{
+    const parts = new Intl.DateTimeFormat('en-GB',{timeZone:tz,hour:'2-digit',minute:'2-digit',hour12:false,day:'2-digit',weekday:'short'}).formatToParts(new Date());
+    const g = t=>parts.find(p=>p.type===t).value;
+    return {min:(+g('hour')%24)*60 + (+g('minute')), day:+g('day'), wd:g('weekday')};
+  }catch(e){ return {min:0, day:1, wd:'Mon'}; }
+}
+function crossedTz(prev, now, target){
+  if(prev.day === now.day) return prev.min < target && now.min >= target;
+  return (prev.min < target) || (now.min >= target);
+}
+let taPrev = null;
+function checkTimeAlerts(){
+  const cfg = state.timeAlerts || {};
+  const now = { utcMin: Math.floor(Date.now()/60000) };
+  ['Asia/Tokyo','Europe/London','America/New_York'].forEach(tz=> now[tz]=wall(tz));
+  if(!taPrev){ taPrev = now; renderTimeCard(); return; }
+  const fired = [];
+  TIME_EVENTS.forEach(ev=>{
+    if(!cfg[ev.id]) return;
+    let hit = false;
+    if(ev.every){
+      hit = Math.floor(taPrev.utcMin/ev.every) !== Math.floor(now.utcMin/ev.every);
+    } else if(ev.weekday !== undefined){
+      const w = now[ev.tz];
+      if(WD.indexOf(w.wd) === ev.weekday) hit = crossedTz(taPrev[ev.tz], w, ev.min);
+    } else {
+      hit = crossedTz(taPrev[ev.tz], now[ev.tz], ev.min);
+    }
+    if(hit) fired.push(ev.label);
+  });
+  taPrev = now;
+  if(fired.length){
+    fired.forEach(msg=>{
+      timeNotify(msg);
+      (state.timeLog = state.timeLog||[]).unshift({t:new Date().toISOString(), msg});
+      state.timeLog = state.timeLog.slice(0,10);
+    });
+    saveState();
+  }
+  renderTimeCard();
+}
+function timeNotify(msg){
+  beep();
+  try{ if(navigator.vibrate) navigator.vibrate([150,80,150]); }catch(e){}
+  try{ if('Notification' in window && Notification.permission==='granted') new Notification('⏰ Ciubi', {body: msg}); }catch(e){}
+}
+function setTimeAlert(id, val){
+  if(!state.timeAlerts) state.timeAlerts = {};
+  state.timeAlerts[id] = val;
+  saveState();
+  renderTimeCard();
+}
+function upcomingHTML(){
+  const cfg = state.timeAlerts || {};
+  const base = taPrev ? taPrev.utcMin : Math.floor(Date.now()/60000);
+  const rows = [];
+  TIME_EVENTS.forEach(ev=>{
+    if(!cfg[ev.id]) return;
+    if(ev.every){
+      const next = ev.every - (base % ev.every);
+      rows.push({delta:next, label:ev.label});
+    } else if(ev.weekday !== undefined){
+      const w = wall(ev.tz);
+      const wdI = WD.indexOf(w.wd);
+      let days = (ev.weekday - wdI + 7) % 7;
+      let delta = days*1440 + (ev.min - w.min);
+      if(delta <= 0) delta += 7*1440;
+      rows.push({delta, label:ev.label});
+    } else {
+      const w = wall(ev.tz);
+      let delta = (ev.min - w.min + 1440) % 1440;
+      if(delta === 0) delta = 1440;
+      rows.push({delta, label:ev.label});
+    }
+  });
+  rows.sort((a,b)=>a.delta-b.delta);
+  if(!rows.length) return `<p class="small-note">Nicio alertă de timp activă — bifează mai sus ce vrei să auzi.</p>`;
+  return rows.slice(0,5).map(r=>{
+    const when = new Date(Date.now()+r.delta*60000);
+    return `<div class="news-row"><span>${r.label}</span><b>în ${Math.floor(r.delta/60)}h ${r.delta%60}m (${when.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})})</b></div>`;
+  }).join('');
+}
+function timeLogHTML(){
+  const L = state.timeLog || [];
+  if(!L.length) return `<p class="small-note">Încă nimic — evenimentele anunțate apar aici.</p>`;
+  return L.map(e=>{
+    const d = new Date(e.t);
+    return `<div class="news-row"><span>🔔 ${e.msg}</span><b>${d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</b></div>`;
+  }).join('');
+}
+function timeSettingsHTML(){
+  const cfg = state.timeAlerts || {};
+  const row = id=>{
+    const ev = TIME_EVENTS.find(e=>e.id===id);
+    return `<label class="ta-check"><input type="checkbox" ${cfg[id]?'checked':''} onchange="setTimeAlert('${id}', this.checked)"/> ${ev.label}</label>`;
+  };
+  return `
+    <p class="small-note" style="margin:0 0 3px">Sesiuni (deschidere / închidere):</p>
+    <div class="grid2">${SESSION_EV_IDS.map(row).join('')}</div>
+    <p class="small-note" style="margin:6px 0 3px">Închidere lumânări:</p>
+    <div class="grid2">${CANDLE_EV_IDS.map(row).join('')}</div>`;
+}
+function renderTimeCard(){
+  const up = document.getElementById('time-upcoming');
+  if(up) up.innerHTML = upcomingHTML();
+  const lg = document.getElementById('time-log');
+  if(lg) lg.innerHTML = timeLogHTML();
+}
+
+/* ---------------- FEEDS ---------------- */
+const BINANCE_MAP = {BTCUSD:'BTCUSDT', ETHUSD:'ETHUSDT', SOLUSD:'SOLUSDT', BNBUSD:'BNBUSDT'};
+const FEED_OVERRIDES = {
+  'ES': {type:'yahoo', sym:'ES=F'},
+  'NQ': {type:'yahoo', sym:'NQ=F'},
+  'YM': {type:'yahoo', sym:'YM=F'},
+  'DXY': {type:'yahoo', sym:'DX-Y.NYB'}
+};
+function resolveFeed(key){
+  if(BINANCE_MAP[key]) return {type:'binance', sym:BINANCE_MAP[key]};
+  if(FEED_OVERRIDES[key]) return FEED_OVERRIDES[key];
+  if(key==='XAUUSD') return {type:'gold', sym:'XAU'};
+  if(key==='XAGUSD') return {type:'gold', sym:'XAG'};
+  if(/^[A-Z]{6}$/.test(key)) return {type:'yahoo', sym:key+'=X'};
+  return {type:'yahoo', sym:key};
+}
+function isCrypto(key){
+  const f = resolveFeed(key);
+  return f.type==='binance' || (f.type==='yahoo' && /-USD$/.test(f.sym));
+}
+function feedsMap(){
+  const m = {};
+  const g = state.alertGroups || {forex:[],stocks:[]};
+  [...(g.forex||[]), ...(g.stocks||[])].forEach(k=>{ m[k]=resolveFeed(k); });
+  return m;
+}
+function forexSorted(){ return ((state.alertGroups&&state.alertGroups.forex)||[]).slice().sort(); }
+function stocksSorted(){
+  const st = ((state.alertGroups&&state.alertGroups.stocks)||[]).slice();
+  return st.filter(k=>!isCrypto(k)).sort().concat(st.filter(k=>isCrypto(k)).sort());
+}
+
+const PROXIES = [
+  u=>'https://api.allorigins.win/raw?url='+encodeURIComponent(u),
+  u=>'https://corsproxy.io/?url='+encodeURIComponent(u),
+  u=>'https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(u)
+];
+async function fetchJSON(url){
+  for(const px of PROXIES){
+    try{
+      const ctrl = new AbortController();
+      const to = setTimeout(()=>ctrl.abort(), 9000);
+      const r = await fetch(px(url), {signal:ctrl.signal});
+      clearTimeout(to);
+      if(!r.ok) continue;
+      const j = await r.json();
+      if(j) return j;
+    }catch(e){}
+  }
+  return null;
+}
+
+let lastPrices = {};
+let alSymbol = 'XAUUSD';
+let alDir = 'above';
+let editingAlertId = null;
+let alEditMode = false;
+
+async function refreshAllPrices(){
+  const FM = feedsMap();
+  const bin = Object.entries(FM).filter(([k,f])=>f.type==='binance');
+  if(bin.length){
+    try{
+      const r = await fetch('https://api.binance.com/api/v3/ticker/price?symbols='+encodeURIComponent(JSON.stringify(bin.map(([k,f])=>f.sym))));
+      const j = await r.json();
+      (j||[]).forEach(x=>{ const e = bin.find(([k,f])=>f.sym===x.symbol); if(e) lastPrices[e[0]] = parseFloat(x.price); });
+    }catch(e){}
+  }
+  const gold = Object.entries(FM).filter(([k,f])=>f.type==='gold');
+  for(const [k,f] of gold){
+    try{
+      const r = await fetch('https://api.gold-api.com/price/'+f.sym);
+      const j = await r.json();
+      if(j && j.price!=null) lastPrices[k] = parseFloat(j.price);
+    }catch(e){}
+  }
+  const yah = Object.entries(FM).filter(([k,f])=>f.type==='yahoo');
+  if(yah.length){
+    const j = await fetchJSON('https://query1.finance.yahoo.com/v7/finance/spark?symbols='+yah.map(([k,f])=>f.sym).join(',')+'&range=1d&interval=1m');
+    const res = (j && j.spark && j.spark.result) || null;
+    if(res){
+      yah.forEach(([k,f])=>{
+        const m = res[f.sym] && res[f.sym].response && res[f.sym].response[0];
+        if(m && m.meta && m.meta.regularMarketPrice!=null) lastPrices[k] = m.meta.regularMarketPrice;
+      });
+    } else {
+      for(const [k,f] of yah.slice(0,8)){
+        const jc = await fetchJSON('https://query1.finance.yahoo.com/v8/finance/chart/'+encodeURIComponent(f.sym)+'?interval=1m&range=1d');
+        const m = jc && jc.chart && jc.chart.result && jc.chart.result[0];
+        if(m && m.meta && m.meta.regularMarketPrice!=null) lastPrices[k] = m.meta.regularMarketPrice;
+      }
+    }
+  }
+}
+function fmtPrice(p){
+  return p>=1000 ? p.toLocaleString('en-US',{maximumFractionDigits:1}) : p.toFixed(p>=100?2:4);
+}
+function setAlSymbol(s){ alSymbol = s; refreshAlertForm(); }
+function setAlDir(d){ alDir = d; refreshAlertForm(); }
+function toggleAlEdit(){ alEditMode = !alEditMode; refreshAlertForm(); }
+function addAlertKey(group){
+  const el = document.getElementById('al-new-key');
+  if(!el) return;
+  const v = (el.value||'').trim().toUpperCase().replace(/\s+/g,'');
+  if(!v){ alert('Scrie un simbol (ex. GBPJPY, ES=F, AAPL).'); return; }
+  const g = state.alertGroups;
+  if((g.forex||[]).includes(v) || (g.stocks||[]).includes(v)){ alert('Simbolul există deja.'); return; }
+  (g[group] = g[group]||[]).push(v);
+  el.value = '';
+  saveState();
+  renderTab();
+}
+function delAlertKey(k){
+  const g = state.alertGroups;
+  g.forex = (g.forex||[]).filter(x=>x!==k);
+  g.stocks = (g.stocks||[]).filter(x=>x!==k);
+  if(alSymbol===k) alSymbol = (g.forex&&g.forex[0]) || (g.stocks&&g.stocks[0]) || 'XAUUSD';
+  saveState();
+  renderTab();
+}
+function resetAlertGroups(){
+  if(!confirm('Restabilești listele implicite Forex & Stocks?\n(Simbolurile adăugate de tine se pierd.)')) return;
+  state.alertGroups = JSON.parse(JSON.stringify(DEFAULT_STATE.alertGroups));
+  saveState();
+  renderTab();
+}
+function refreshAlertForm(){
+  const symBox = document.getElementById('al-sym-chips');
+  if(symBox){
+    const chip = (k)=>{
+      const on = k===alSymbol;
+      return `<span class="tag" style="cursor:pointer;${on?'border-color:var(--orange);color:var(--orange);':''}" onclick="setAlSymbol('${k}')">${k}${alEditMode?` <b style="color:var(--red)" onclick="event.stopPropagation();delAlertKey('${k}')">✕</b>`:''}</span>`;
+    };
+    symBox.innerHTML =
+      `<p class="small-note" style="margin:0 0 3px">FOREX <button class="link-btn" onclick="toggleAlEdit()">${alEditMode?'✅ Gata':'✎ Edit'}</button></p>` +
+      forexSorted().map(chip).join('') +
+      `<p class="small-note" style="margin:6px 0 3px">STOCKS / indici / metale / crypto</p>` +
+      stocksSorted().map(chip).join('') +
+      (alEditMode ? `
+        <div class="field" style="margin-top:8px"><label>Adaugă</label><input id="al-new-key" placeholder="ex. GBPJPY sau ES=F sau AAPL"/></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn small" onclick="addAlertKey('forex')">+ Forex</button><button class="btn small secondary" onclick="addAlertKey('stocks')">+ Stocks</button><button class="btn small secondary" onclick="resetAlertGroups()">⟲ Lista implicită</button></div>` : '');
+  }
+  const dirBox = document.getElementById('al-dir-chips');
+  if(dirBox) dirBox.innerHTML = ['above','below'].map(d=>{
+    const on = d===alDir;
+    return `<span class="tag" style="cursor:pointer;${on?'border-color:var(--orange);color:var(--orange);':''}" onclick="setAlDir('${d}')">${d==='above'?'PESTE':'SUB'}</span>`;
+  }).join('');
+  const btn = document.getElementById('al-save-btn');
+  if(btn) btn.textContent = editingAlertId ? '💾 Salvează modificarea' : '+ Adaugă alerta';
+  updateLiveCur();
+}
+function updateLiveCur(){
+  const s = document.getElementById('live-sym');
+  if(s) s.textContent = alSymbol;
+  const c = document.getElementById('live-cur');
+  if(c) c.textContent = lastPrices[alSymbol]!=null ? fmtPrice(lastPrices[alSymbol]) : '…';
+}
+function submitAlert(){
+  const raw = (document.getElementById('al-price').value||'').replace(',','.');
+  const price = parseFloat(raw);
+  if(isNaN(price) || price<=0){ alert('Completează un preț valid.'); return; }
+  if(!state.alerts) state.alerts = [];
+  if(editingAlertId){
+    const a = state.alerts.find(x=>x.id===editingAlertId);
+    if(a){ a.symbol = alSymbol; a.dir = alDir; a.price = price; a.triggered = false; }
+    editingAlertId = null;
+  } else {
+    state.alerts.push({id:Date.now(), symbol:alSymbol, dir:alDir, price:price, active:true, triggered:false});
+  }
+  const inp = document.getElementById('al-price');
+  if(inp) inp.value = '';
+  saveState();
+  renderTab();
+  checkAlerts();
+}
+function editAlert(id){
+  const a = (state.alerts||[]).find(x=>x.id===id);
+  if(!a) return;
+  editingAlertId = id;
+  alSymbol = a.symbol;
+  alDir = a.dir;
+  const p = document.getElementById('al-price');
+  if(p) p.value = a.price;
+  refreshAlertForm();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function delAlert(id){
+  state.alerts = (state.alerts||[]).filter(a=>a.id!==id);
+  if(editingAlertId===id) editingAlertId = null;
+  saveState();
+  renderTab();
+}
+async function checkAlerts(){
+  await refreshAllPrices();
+  const act = (state.alerts||[]).filter(a=>a.active && !a.triggered);
+  let changed = false;
+  act.forEach(a=>{
+    const p = lastPrices[a.symbol];
+    if(p==null) return;
+    const hit = (a.dir==='above' && p>=a.price) || (a.dir==='below' && p<=a.price);
+    if(hit){
+      a.triggered = true;
+      a.triggeredAt = new Date().toISOString();
+      changed = true;
+      alertNotify(a,p);
+    }
+  });
+  if(changed) saveState();
+  updateAlertsUI();
+}
+let audioCtx = null;
+function ensureAudio(){
+  try{
+    if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==='suspended') audioCtx.resume();
+  }catch(e){}
+}
+window.addEventListener('pointerdown', ensureAudio);
+function beep(){
+  ensureAudio();
+  try{
+    const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+    o.connect(g); g.connect(audioCtx.destination);
+    o.frequency.value = 880; o.type='sine';
+    g.gain.setValueAtTime(0.001, audioCtx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.3, audioCtx.currentTime+0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime+0.6);
+    o.start(); o.stop(audioCtx.currentTime+0.65);
+  }catch(e){}
+}
+function alertNotify(a,p){
+  beep();
+  try{ if(navigator.vibrate) navigator.vibrate([200,100,200]); }catch(e){}
+  const msg = `${a.symbol} ${a.dir==='above'?'a urcat peste':'a coborât sub'} ${a.price} — acum ${fmtPrice(p)}`;
+  try{
+    if('Notification' in window && Notification.permission==='granted'){
+      new Notification('🔔 Ciubi Alertă', {body: msg});
+    }
+  }catch(e){}
+}
+function askNotifPermission(){
+  if(!('Notification' in window)){ alert('Browserul nu suportă notificări.'); return; }
+  if(Notification.permission==='granted'){ alert('✅ Notificările sunt deja active.'); return; }
+  if(Notification.permission==='denied'){
+    alert('Notificările sunt BLOCATE pentru acest site.\n\nDeblocare: apasă iconița 🔒/⚙ din bara de adrese → „Site settings” → „Notifications” → Allow.\n\nDacă ai văzut mesajul „This site can’t ask for your permission”: închide bulele/overlay-urile din alte aplicații (baloane WhatsApp, filtre de luminozitate), apoi apasă „Try again”.');
+    return;
+  }
+  Notification.requestPermission().then(p=>{
+    if(p==='granted'){ alert('✅ Notificări activate.'); }
+    else{ alert('Notificări refuzate — alertele vor face sunet + vibrație în aplicație.\n\nDacă apare „This site can’t ask for your permission”: închide bulele/overlay-urile din alte aplicații și reîncearcă.'); }
+  });
+}
+function alertsListHTML(){
+  const A = state.alerts||[];
+  if(!A.length) return `<p class="small-note">Nicio alertă încă. Alege instrumentul + condiția, scrie prețul și apasă „+ Adaugă alerta”. Poți pune oricâte, una sub alta.</p>`;
+  return A.slice().reverse().map(a=>{
+    const p = lastPrices[a.symbol];
+    return `<div class="breakdown-row" style="${a.triggered?'border-color:var(--orange);color:var(--orange)':''}">
+      <span class="name">${a.triggered?'🔔':''} ${a.symbol} ${a.dir==='above'?'peste':'sub'} ${a.price}</span>
+      <span class="mid" id="ap-${a.id}">${p!=null?('acum: '+fmtPrice(p)):'—'}</span>
+      <span style="display:flex;gap:12px;align-items:center">
+        <button class="link-btn" style="font-size:.95rem" onclick="editAlert(${a.id})" title="Editează">✎</button>
+        <button class="link-btn" style="color:var(--red);font-size:.95rem" onclick="delAlert(${a.id})" title="Șterge">✕</button>
+      </span>
+    </div>`;
+  }).join('');
+}
+function updateAlertsUI(){
+  const box = document.getElementById('alerts-list');
+  const sig = JSON.stringify((state.alerts||[]).map(a=>[a.id,a.symbol,a.dir,a.price,a.triggered]));
+  if(box){
+    if(box.dataset.sig !== sig){ box.innerHTML = alertsListHTML(); box.dataset.sig = sig; }
+    (state.alerts||[]).forEach(a=>{
+      const el = document.getElementById('ap-'+a.id);
+      if(el) el.textContent = lastPrices[a.symbol]!=null ? ('acum: '+fmtPrice(lastPrices[a.symbol])) : '—';
+    });
+  }
+  updateLiveCur();
+}
+
+/* ---------------- SESSIONS & NEWS ---------------- */
+let newsEvents;
+function tzHour(tz){
+  try{
+    const parts = new Intl.DateTimeFormat('en-GB',{timeZone:tz,hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+    let h = +parts.find(p=>p.type==='hour').value;
+    const m = +parts.find(p=>p.type==='minute').value;
+    if(h===24) h=0;
+    return h + m/60;
+  }catch(e){ return null; }
+}
+function offHours(tz){
+  const now = new Date();
+  const utc = now.getUTCHours()+now.getUTCMinutes()/60;
+  const l = tzHour(tz);
+  if(l===null) return 0;
+  let d = l-utc; if(d>12)d-=24; if(d<-12)d+=24; return d;
+}
+function fmtHM(h){
+  h = ((h%24)+24)%24;
+  const H = Math.floor(h), M = Math.round((h-H)*60);
+  return String(H).padStart(2,'0')+':'+String(M).padStart(2,'0');
+}
+const SESS_DEFS = [
+  {name:'Asia (Tokyo)', tz:'Asia/Tokyo', from:9, to:15},
+  {name:'London', tz:'Europe/London', from:8, to:16.5},
+  {name:'New York', tz:'America/New_York', from:8, to:17}
+];
+function sessInfo(){
+  const offRO = offHours('Europe/Bucharest');
+  const utcNow = new Date().getUTCHours()+new Date().getUTCMinutes()/60;
+  return SESS_DEFS.map(d=>{
+    const off = offHours(d.tz);
+    const nowL = tzHour(d.tz);
+    const cur = (nowL===null) ? (utcNow+off) : nowL;
+    const open = cur>=d.from && cur<d.to;
+    const mins = open ? Math.round((d.to-cur)*60) : Math.round(((d.from-cur+24)%24)*60);
+    return { name:d.name, open, mins,
+      openRO: fmtHM(d.from - off + offRO),
+      closeRO: fmtHM(d.to - off + offRO) };
+  });
+}
+function sessHTML(){
+  const s = sessInfo();
+  const overlap = s[1].open && s[2].open;
+  return s.map(x=>`<div class="sess-item ${x.open?'open':'closed'}"><b>${x.name}</b><br>${x.open?`OPEN · încă ${Math.floor(x.mins/60)}h ${x.mins%60}m`:`closed · deschide ${x.openRO} (ora RO)`}</div>`).join('') +
+  `<div class="sess-item ${overlap?'open':'closed'}" style="flex-basis:100%"><b>London/NY overlap</b> — ${overlap?'🔥 volum maxim acum':'inactiv acum'} · în ora RO: ${s[2].openRO} – ${s[1].closeRO}</div>`;
+}
+function newsHTML(){
+  if(newsEvents === undefined) return `<p class="small-note">⏳ Se încarcă calendarul economic…</p>`;
+  if(newsEvents === null) return `<p class="small-note">📰 Calendarul nu a putut fi încărcat (offline). Verifică manual forexfactory.com înainte de a tranzacționa.</p>`;
+  const now = new Date();
+  const today = now.toDateString();
+  const upcoming = newsEvents.filter(e=>e.t.toDateString()===today && e.t >= new Date(now.getTime()-15*60000)).sort((a,b)=>a.t-b.t);
+  const soon = upcoming.filter(e=>(e.t-now)<=45*60000 && (e.t-now)>=-15*60000);
+  let out = '';
+  if(soon.length) out += `<div class="shield-warn">⚠️ Impact mare în fereastra de risc: ${soon.map(e=>`${e.title} (${e.country})`).join(' · ')} — evită intrări noi.</div>`;
+  out += upcoming.length
+    ? upcoming.slice(0,6).map(e=>`<div class="news-row"><span>${e.title} · ${e.country}</span><b>${String(e.t.getHours()).padStart(2,'0')}:${String(e.t.getMinutes()).padStart(2,'0')}</b></div>`).join('')
+    : `<p class="small-note">✅ Nicio știre de impact mare programată azi (ora locală).</p>`;
+  return out;
+}
+async function loadNews(){
+  try{
+    const r = await fetch('https://nfs.faireconomy.media/ff_calendar_thisweek.json');
+    const j = await r.json();
+    newsEvents = (j||[]).filter(e=>e.impact==='High')
+      .map(e=>({title:e.title||'', country:e.country||'', t:new Date(e.date)}))
+      .filter(e=>!isNaN(e.t));
+  }catch(e){ newsEvents = null; }
+  const nb = document.getElementById('news-box');
+  if(nb) nb.innerHTML = newsHTML();
+}
+function tickClocks(){
+  const sb = document.getElementById('sess-box');
+  if(sb) sb.innerHTML = sessHTML();
+  const nb = document.getElementById('news-box');
+  if(nb && newsEvents) nb.innerHTML = newsHTML();
+}
+
+/* ---------------- PWA install ---------------- */
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', e=>{
+  e.preventDefault();
+  deferredPrompt = e;
+  const b = document.getElementById('install-btn');
+  if(b) b.style.display = 'inline-block';
+});
+
+/* ---------------- instruments ---------------- */
+function pairOptions(extra){
+  const list = state.instruments.slice();
+  if(extra && !list.includes(extra)) list.push(extra);
+  return list;
+}
+function addInstrument(){
+  const el = document.getElementById('new-inst');
+  if(!el) return;
+  const v = (el.value||'').trim().toUpperCase();
+  if(!v) return;
+  if(!state.instruments.includes(v)) state.instruments.push(v);
+  el.value = '';
+  saveState();
+  renderTab();
+}
+function delInstrument(v){
+  if(!confirm(`Elimini ${v} din lista de instrumente?\n(Trade-urile existente rămân în jurnal.)`)) return;
+  state.instruments = state.instruments.filter(x=>x!==v);
+  saveState();
+  renderTab();
+}
+function renInstrument(v){
+  const nv = (prompt(`Redenumește ${v}:`, v)||'').trim().toUpperCase();
+  if(!nv || nv===v) return;
+  state.instruments = state.instruments.map(x=>x===v?nv:x);
+  saveState();
+  renderTab();
+}
+
+/* ---------------- R calc ---------------- */
+function calcR(t){
+  if(t.resultR !== '' && t.resultR !== undefined && t.resultR !== null){
+    const v = parseFloat(t.resultR);
+    if(!isNaN(v)) return v;
+  }
+  const entry = parseFloat(t.entry), sl = parseFloat(t.sl), exit = parseFloat(t.exit);
+  if(isNaN(entry) || isNaN(sl) || isNaN(exit)) return null;
+  const risk = Math.abs(entry - sl);
+  if(risk === 0) return null;
+  const reward = t.direction === 'SELL' ? (entry - exit) : (exit - entry);
+  return reward / risk;
+}
+function fmtR(v){
+  if(v === null || v === undefined || isNaN(v)) return '+0.00R';
+  const sign = v >= 0 ? '+' : '';
+  return sign + v.toFixed(2) + 'R';
+}
+function rClass(v){
+  if(v === null || v === undefined) return '';
+  return v > 0 ? 'green' : (v < 0 ? 'red' : '');
+}
+function fmtMoney(v){
+  if(v === null || v === undefined || isNaN(v)) return '$0';
+  return (v < 0 ? '-$' : '$') + Math.abs(v).toFixed(0);
+}
+function closedTrades(){
+  return state.trades.map(t=>({...t, R: calcR(t)})).filter(t=> t.R !== null);
+}
+
+/* ---------------- SHIELD ---------------- */
+function shieldCalc(){
+  const s = state.shield;
+  const account = parseFloat(s.account)||0;
+  const risk = parseFloat(s.riskPerTrade)||0;
+  const dailyLimit = account*(parseFloat(s.dailyPct)||0)/100;
+  const maxDD = account*(parseFloat(s.maxDDPct)||0)/100;
+  const today = new Date().toISOString().slice(0,10);
+  const closed = closedTrades();
+  const todayR = closed.filter(t=>t.date===today).reduce((a,t)=>a+t.R,0);
+  const today$ = todayR*risk;
+  let run=0, peak=0, dd=0;
+  closed.forEach(t=>{ run+=t.R*risk; peak=Math.max(peak,run); dd=Math.max(dd,peak-run); });
+  return { dailyLimit, maxDD, today$, dd, left: dailyLimit + today$ };
+}
+function shieldStatus(){
+  if(!state.shield || !state.shield.enabled) return null;
+  const c = shieldCalc();
+  const lost = -c.today$;
+  if(c.dailyLimit>0 && lost >= c.dailyLimit) return {level:'stop', msg:'STOP! LIMITA ZILNICĂ ATINSĂ. Închide platforma.'};
+  if(c.maxDD>0 && c.dd >= c.maxDD) return {level:'stop', msg:'STOP! DRAWDOWN MAXIM ATINS. Închide platforma.'};
+  if(c.dailyLimit>0 && lost >= 0.8*c.dailyLimit) return {level:'warn', msg:`Atenție: ai folosit ${Math.round(lost/c.dailyLimit*100)}% din limita zilnică (${fmtMoney(lost)} din ${fmtMoney(c.dailyLimit)}).`};
+  return {level:'ok', msg:`Shield activ. P&L azi: ${fmtMoney(c.today$)} · Mai ai ${fmtMoney(c.left)} din limita zilnică.`};
+}
+function shieldBannerHTML(){
+  const st = shieldStatus();
+  if(!st) return '';
+  if(st.level==='stop') return `<div class="shield-stop">🛑 ${st.msg}</div>`;
+  if(st.level==='warn') return `<div class="shield-warn">⚠️ ${st.msg}</div>`;
+  return `<div class="shield-ok">🛡 ${st.msg}</div>`;
+}
+
+/* ---------------- render ---------------- */
+function render(){
+  const app = document.getElementById('app');
+  app.innerHTML = `
+    <header class="top">
+      <h1 class="logo">CIUBI <span>TRADING COMPANION</span></h1>
+    </header>
+    <nav class="tabs">
+      ${tabBtn('dashboard','Dashboard')}
+      ${tabBtn('plan','Plan')}
+      ${tabBtn('execute','Execute')}
+      ${tabBtn('trades','Trades')}
+      ${tabBtn('review','Review')}
+      ${tabBtn('improve','Improve')}
+    </nav>
+    <hr class="divider"/>
+    <div id="tab-content"></div>
+    <p class="footer-note">Ciubi · Trading Companion V2.19 — temă light/dark</p>
+    <button id="theme-btn" title="Schimbă tema" onclick="toggleTheme()">🌙</button>
+    <button id="undo-btn" title="Anulează ultima modificare (pas cu pas)" onclick="doUndo()">↩ Undo (0)</button>
+  `;
+  renderTab();
+  bindTabEvents();
+  updateUndoBtn();
+  applyTheme();
+}
+function tabBtn(id,label){
+  return `<button data-tab="${id}" class="${state.tab===id?'active':''}">${label}</button>`;
+}
+function bindTabEvents(){
+  document.querySelectorAll('nav.tabs button').forEach(b=>{
+    b.onclick = ()=>{ state.tab = b.dataset.tab; saveState(false); render(); };
+  });
+}
+function renderTab(){
+  const c = document.getElementById('tab-content');
+  if(state.tab==='dashboard') c.innerHTML = viewDashboard();
+  if(state.tab==='plan') c.innerHTML = viewPlan();
+  if(state.tab==='execute') c.innerHTML = viewExecute();
+  if(state.tab==='trades') c.innerHTML = viewTrades();
+  if(state.tab==='review') c.innerHTML = viewReview();
+  if(state.tab==='improve') c.innerHTML = viewImprove();
+  bindTabContentEvents();
+}
+function live(id, fn){
+  const el = document.getElementById(id);
+  if(el) el.addEventListener('change', ()=>{ fn(el.value); saveState(); });
+}
+
+/* ---------------- DASHBOARD ---------------- */
+function viewDashboard(){
+  const closed = closedTrades();
+  const wins = closed.filter(t=>t.R>0).length;
+  const total = closed.length;
+  const winRate = total ? (wins/total*100) : 0;
+  const totalR = closed.reduce((s,t)=>s+t.R,0);
+
+  const byPair = {};
+  closed.forEach(t=>{
+    byPair[t.pair] = byPair[t.pair] || {trades:0,wins:0,R:0};
+    byPair[t.pair].trades++;
+    if(t.R>0) byPair[t.pair].wins++;
+    byPair[t.pair].R += t.R;
+  });
+  const pairRanking = Object.entries(byPair).sort((a,b)=>b[1].R-a[1].R);
+  const bestPair = pairRanking.length ? pairRanking[0][0] : '-';
+
+  const bySetup = {};
+  closed.forEach(t=>{
+    bySetup[t.setup] = bySetup[t.setup] || {trades:0,wins:0,R:0};
+    bySetup[t.setup].trades++;
+    if(t.R>0) bySetup[t.setup].wins++;
+    bySetup[t.setup].R += t.R;
+  });
+
+  const s = state.shield;
+  const st = shieldStatus();
+  const sc = shieldCalc();
+
+  return `
+    <div class="stat"><label>Total trades</label><div class="val">${total}</div></div>
+    <div class="stat"><label>Win rate</label><div class="val">${winRate.toFixed(1)}%</div></div>
+    <div class="stat"><label>Total R</label><div class="val ${rClass(totalR)}">${fmtR(totalR)}</div></div>
+    <div class="stat"><label>Best pair</label><div class="val orange">${bestPair}</div></div>
+
+    <div class="card">
+      <div class="card-head"><h2>🔔 Alerte de preț (live)</h2><button class="btn small secondary" onclick="askNotifPermission()">Notificări</button></div>
+      <p class="small-note" style="margin:0 0 4px">1) Instrument (apasă):</p>
+      <div id="al-sym-chips" style="margin-bottom:6px"></div>
+      <p class="small-note" style="margin:0 0 4px">2) Condiție:</p>
+      <div id="al-dir-chips" style="margin-bottom:6px"></div>
+      <p class="small-note" style="margin:0 0 4px">3) Preț alertă pentru <b id="live-sym">—</b> · acum: <b id="live-cur" style="color:var(--green)">…</b></p>
+      <div class="field"><input id="al-price" type="text" inputmode="decimal" placeholder="scrie nivelul alertei"/></div>
+      <button class="btn small" id="al-save-btn" onclick="submitAlert()">+ Adaugă alerta</button>
+      <div style="height:8px"></div>
+      <div id="alerts-list"></div>
+      <p class="small-note">Chips = doar denumire; prețul live la punctul 3 (la ~30 s). ✎ Edit = adaugă/șterge/restabilește simboluri.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>📱 Aplicația pe telefon</h2></div>
+      <p class="card-sub">Instaleaz-o ca aplicație: iconiță pe ecranul principal, pornire fără bara de adrese, funcționează și offline.</p>
+      <button class="btn small" id="install-btn" style="display:none">📱 Instalează aplicația</button>
+      <p class="small-note" id="ios-hint" style="display:none">iPhone/iPad: în Safari apasă Share (⬆) → „Add to Home Screen”. Android: meniul browser (⋮) → „Add to Home screen”.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>🛡 Funded Shield</h2><span class="pill ${s.enabled ? (st.level==='stop'?'bad':st.level==='warn'?'on':'good') : ''}">${s.enabled?'ACTIV':'OPRIT'}</span></div>
+      <div class="field"><label>Activ</label><input type="checkbox" id="sh-on" ${s.enabled?'checked':''} style="flex:0 0 auto;width:18px;height:18px;padding:0"/></div>
+      <div class="row2">
+        <div class="field"><label>Cont ($)</label><input id="sh-account" type="number" value="${s.account}"/></div>
+        <div class="field"><label>Risc/trade $</label><input id="sh-risk" type="number" value="${s.riskPerTrade}"/></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>Limită zilnică %</label><input id="sh-daily" type="number" step="0.5" value="${s.dailyPct}"/></div>
+        <div class="field"><label>Max DD %</label><input id="sh-dd" type="number" step="0.5" value="${s.maxDDPct}"/></div>
+      </div>
+      ${s.enabled ? shieldBannerHTML() : `<p class="small-note">Activează-l pentru a urmări limita zilnică și drawdown-ul, ca pe un cont funded.</p>`}
+      ${s.enabled ? `<p class="small-note">Limită zilnică: ${fmtMoney(sc.dailyLimit)} · Max DD: ${fmtMoney(sc.maxDD)} · Drawdown curent: ${fmtMoney(sc.dd)}</p>` : ''}
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>💾 Backup</h2></div>
+      <p class="card-sub">Salvează-ți jurnalul ca fișier sau restaurează-l pe alt device.</p>
+      <div class="grid2">
+        <button class="btn small" id="export-btn">⬇ Descarcă salvarea</button>
+        <button class="btn small secondary" id="import-btn">⬆ Restaurează</button>
+      </div>
+      <input type="file" id="import-file" accept=".json,application/json" style="display:none"/>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>Pair performance</h2><button class="btn small secondary" data-goto="trades">+ Trade</button></div>
+      ${pairRanking.length===0 ? `<div class="empty">Fara trade-uri inca.</div>` : `
+      <div class="table-wrap"><table class="journal"><thead><tr><th>Rank</th><th>Pair</th><th>Trades</th><th>Win%</th><th>R</th></tr></thead><tbody>
+        ${pairRanking.map((p,i)=>`<tr><td>#${i+1}</td><td>${p[0]}</td><td>${p[1].trades}</td><td>${(p[1].wins/p[1].trades*100).toFixed(0)}%</td><td class="${rClass(p[1].R)}">${fmtR(p[1].R)}</td></tr>`).join('')}
+      </tbody></table></div>`}
+    </div>
+
+    <div class="card">
+      <h2>Setup performance</h2>
+      ${Object.keys(bySetup).length===0 ? `<div class="empty">Fara date de setup inca.</div>` : `
+      ${Object.entries(bySetup).sort((a,b)=>b[1].R-a[1].R).map(([name,d])=>`
+        <div class="breakdown-row">
+          <span class="name">${name}</span>
+          <span class="mid">${d.trades} trade · ${(d.wins/d.trades*100).toFixed(0)}% win</span>
+          <span class="r ${rClass(d.R)}">${fmtR(d.R)}</span>
+        </div>`).join('')}`}
+    </div>
+  `;
+}
+
+/* ---------------- PLAN ---------------- */
+let planOpenStep = 1;
+function stepDoneStatus(n){
+  const p = state.plan;
+  if(n===1) return p.pair && p.direction && p.htfBias && p.session;
+  if(n===2) return p.setup;
+  if(n===3) return p.riskPercent && p.plannedRR;
+  if(n===4) return p.checklist.filter(Boolean).length === CHECKLIST_ITEMS.length;
+  if(n===5) return p.decision;
+  return false;
+}
+function viewPlan(){
+  const p = state.plan;
+  const decisionPill = p.decision ? (p.decision==='NO TRADE' ? 'NO TRADE' : p.decision) : 'NO TRADE';
+  return `
+    <div class="card">
+      <div class="card-head"><h2>Pre-Trade Plan</h2><span class="pill ${p.decision && p.decision!=='NO TRADE' ? 'on':''}">${decisionPill}</span></div>
+      <p class="card-sub">Construieste ideea intai. Extinde doar ce ai nevoie.</p>
+    </div>
+
+    ${planStep(1,'Market', `
+      <div class="field"><label>Pair</label>
+        <select id="p-pair">${['-',...pairOptions(p.pair)].map(v=>`<option ${p.pair===v?'selected':''}>${v}</option>`).join('')}</select>
+      </div>
+      <div class="field"><label>Direction</label>
+        <select id="p-direction">${['-','BUY','SELL'].map(v=>`<option ${p.direction===v?'selected':''}>${v}</option>`).join('')}</select>
+      </div>
+      <div class="field"><label>HTF Bias</label>
+        <select id="p-htf">${['-','BULLISH','BEARISH','NEUTRAL'].map(v=>`<option ${p.htfBias===v?'selected':''}>${v}</option>`).join('')}</select>
+      </div>
+      <div class="field"><label>Session</label>
+        <select id="p-session">${['-',...SESSIONS].map(v=>`<option ${p.session===v?'selected':''}>${v}</option>`).join('')}</select>
+      </div>
+      <button class="btn" data-next="2">NEXT -&gt; SETUP</button>
+    `)}
+
+    ${planStep(2,'Setup', `
+      <div class="field"><label>Setup</label>
+        <select id="p-setup">${['-',...SETUPS].map(v=>`<option ${p.setup===v?'selected':''}>${v}</option>`).join('')}</select>
+      </div>
+      <div class="field"><label>Setup notes</label>
+        <textarea id="p-setupnotes" placeholder="Ce anume confirma acest setup" style="flex:1;">${p.setupNotes||''}</textarea>
+      </div>
+      <button class="btn" data-next="3">NEXT -&gt; RISK</button>
+    `)}
+
+    ${planStep(3,'Risk', `
+      <div class="row2">
+        <div class="field"><label>Risc planificat (%)</label>
+          <input id="p-risk" type="number" step="0.1" placeholder="ex. 1" value="${p.riskPercent||''}"/>
+        </div>
+        <div class="field"><label>R:R planificat</label>
+          <input id="p-rr" type="text" placeholder="ex. 1:2.5" value="${p.plannedRR||''}"/>
+        </div>
+      </div>
+      <button class="btn" data-next="4">NEXT -&gt; CHECK</button>
+    `)}
+
+    ${planStep(4,'Check', `
+      ${CHECKLIST_ITEMS.map((txt,i)=>`
+        <div class="checklist-item ${p.checklist[i]?'checked':''}" data-check="${i}">
+          <div class="checkbox ${p.checklist[i]?'checked':''}">${p.checklist[i]?'✓':''}</div>
+          <span class="txt">${txt}</span>
+        </div>
+      `).join('')}
+      <div style="height:16px"></div>
+      <button class="btn" data-next="5">NEXT -&gt; DECISION</button>
+    `, `${p.checklist.filter(Boolean).length}/${CHECKLIST_ITEMS.length}`)}
+
+    ${planStep(5,'Decision', `
+      <div class="field"><label>Decizie</label>
+        <select id="p-decision">${['NO TRADE','LONG','SHORT'].map(v=>`<option ${p.decision===v?'selected':''}>${v}</option>`).join('')}</select>
+      </div>
+      <button class="btn" id="save-plan-btn">Save plan</button>
+    `)}
+  `;
+}
+function planStep(n,title,body,rightLabel){
+  const isOpen = planOpenStep === n;
+  const done = stepDoneStatus(n);
+  const statusText = rightLabel ? rightLabel : (isOpen?'OPEN':(done?'DONE':'LOCKED'));
+  const statusClass = isOpen ? 'open' : (done ? 'done' : '');
+  return `
+    <div class="step ${isOpen?'open':''}">
+      <div class="step-head" data-stepheader="${n}">
+        <div class="left"><span class="num">${String(n).padStart(2,'0')}</span><span class="title">${title}</span></div>
+        <span class="status ${statusClass}">${statusText}</span>
+      </div>
+      ${isOpen ? `<div class="step-body">${body}</div>` : ''}
+    </div>
+  `;
+}
+
+/* ---------------- EXECUTE ---------------- */
+function viewExecute(){
+  const p = state.plan;
+  const e = state.activeExecution;
+  const hasPlan = state.planActive && p.pair;
+  return `
+    ${shieldBannerHTML()}
+
+    <div class="card">
+      <div class="card-head"><h2>⏰ Sesiuni & știri (ora RO)</h2><span class="pill">${new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</span></div>
+      <div class="sess" id="sess-box">${sessHTML()}</div>
+      <div id="news-box">${newsHTML()}</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>⏰ Alerte de timp</h2></div>
+      ${timeSettingsHTML()}
+      <p class="small-note" style="margin:6px 0 3px">Următoarele evenimente (ora ta):</p>
+      <div id="time-upcoming"></div>
+      <p class="small-note" style="margin:6px 0 3px">Istoric anunțuri:</p>
+      <div id="time-log"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>Execute trade</h2><span class="pill ${hasPlan?'on':''}">${hasPlan?'PLAN LOADED':'NO ACTIVE TRADE'}</span></div>
+      <p class="card-sub">${hasPlan ? `${p.pair} · ${p.direction} · ${p.htfBias}` : 'Porneste din Plan, salveaza un plan, apoi incarca-l in Execute.'}</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>Planned setup</h2><button class="btn small secondary" id="load-plan-btn">Load active plan</button></div>
+      <div class="stat row"><label>Pair</label><div class="val">${p.pair||'-'}</div></div>
+      <div class="stat row"><label>Direction</label><div class="val">${p.direction||'-'}</div></div>
+      <div class="stat row"><label>HTF Bias</label><div class="val">${p.htfBias||'-'}</div></div>
+      <div class="stat row"><label>Setup</label><div class="val">${p.setup||'-'}</div></div>
+      <div class="stat row"><label>Planned risk</label><div class="val">${p.riskPercent?p.riskPercent+'%':'-'}</div></div>
+      <div class="stat row"><label>Planned R:R</label><div class="val">${p.plannedRR||'-'}</div></div>
+    </div>
+
+    <div class="card">
+      <h2>Actual execution</h2>
+      <div class="field"><label>Entry price</label><input id="e-entry" type="number" step="any" value="${e.entry}"/></div>
+      <div class="field"><label>Stop loss</label><input id="e-sl" type="number" step="any" value="${e.sl}"/></div>
+      <div class="field"><label>Take profit</label><input id="e-tp" type="number" step="any" value="${e.tp}"/></div>
+      <div class="field"><label>Exit price</label><input id="e-exit" type="number" step="any" placeholder="Leave empty while open" value="${e.exit}"/></div>
+      <div class="field"><label>Execution quality</label>
+        <select id="e-quality">${['Clean','Chased entry','Late entry','Early entry','Hesitated'].map(v=>`<option ${e.executionQuality===v?'selected':''}>${v}</option>`).join('')}</select>
+      </div>
+      <div class="field"><label>Entry status</label>
+        <select id="e-status">${['Waiting','Filled','Cancelled','Missed'].map(v=>`<option ${e.entryStatus===v?'selected':''}>${v}</option>`).join('')}</select>
+      </div>
+      <button class="btn" id="save-execution-btn">Save execution</button>
+    </div>
+  `;
+}
+
+/* ---------------- TRADES ---------------- */
+function viewTrades(){
+  const q = state.quickTrade;
+  return `
+    ${shieldBannerHTML()}
+
+    <div class="card">
+      <div class="card-head"><h2>🧮 Calculator de poziție</h2></div>
+      <div class="row2">
+        <div class="field"><label>Sold ($)</label><input id="pc-bal" type="number" value="${state.shield.account}" oninput="calcPos()"/></div>
+        <div class="field"><label>Risc (%)</label><input id="pc-risk" type="number" step="0.1" value="1" oninput="calcPos()"/></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label>SL (pips)</label><input id="pc-sl" type="number" step="any" placeholder="ex. 25" oninput="calcPos()"/></div>
+        <div class="field"><label>Pip val/lot $</label><input id="pc-pv" type="number" step="any" value="10" oninput="calcPos()"/></div>
+      </div>
+      <div id="pc-out"><p class="small-note">Completează sold, risc %, SL și valoare pip.</p></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>🧾 Instrumentele tale</h2></div>
+      <p class="card-sub">Adaugă, redenumește (✎) sau elimină (✕) perechi, aur, indici — ES, NQ, EQ, crypto etc.</p>
+      <div>${state.instruments.map(v=>`<span class="tag">${v} <button class="link-btn" onclick="renInstrument('${v}')" title="Redenumește">✎</button><button class="link-btn" style="color:var(--red)" onclick="delInstrument('${v}')" title="Elimină">✕</button></span>`).join('')}</div>
+      <div class="field" style="margin-top:6px">
+        <input id="new-inst" placeholder="ex. ES, NQ, XAUUSD, BTCUSD…"/>
+        <button class="btn small" onclick="addInstrument()">+ Adaugă</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>Add paper trade</h2><button class="btn small secondary" id="use-plan-btn">Use active plan</button></div>
+      <div class="field"><label>Pair</label><select id="q-pair">${pairOptions(q.pair).map(v=>`<option ${q.pair===v?'selected':''}>${v}</option>`).join('')}</select></div>
+      <div class="field"><label>Direction</label><select id="q-direction">${['BUY','SELL'].map(v=>`<option ${q.direction===v?'selected':''}>${v}</option>`).join('')}</select></div>
+      <div class="field"><label>HTF Bias</label><select id="q-htf">${['BULLISH','BEARISH','NEUTRAL'].map(v=>`<option ${q.htfBias===v?'selected':''}>${v}</option>`).join('')}</select></div>
+      <div class="field"><label>Date</label><input id="q-date" type="date" value="${q.date}"/></div>
+      <div class="field"><label>Setup</label><select id="q-setup">${SETUPS.map(v=>`<option ${q.setup===v?'selected':''}>${v}</option>`).join('')}</select></div>
+      <div class="field"><label>Entry</label><input id="q-entry" type="number" step="any" value="${q.entry}"/></div>
+      <div class="field"><label>Stop loss</label><input id="q-sl" type="number" step="any" value="${q.sl}"/></div>
+      <div class="field"><label>Exit</label><input id="q-exit" type="number" step="any" value="${q.exit}"/></div>
+      <div class="field"><label>Result R (opt.)</label><input id="q-resultr" type="number" step="any" placeholder="Auto from prices" value="${q.resultR}"/></div>
+      <div class="field"><label>Trade note</label>
+        <select id="q-note">${['Clean trade','Revenge trade','FOMO entry','Overleveraged','Moved stop','Cut winner early','Ignored plan','Perfect execution'].map(v=>`<option ${q.note===v?'selected':''}>${v}</option>`).join('')}</select>
+      </div>
+      <div class="field"><label>Rule compliance</label>
+        <select id="q-compliance">${['100% — followed rules','70-89% — minor deviation','50-69% — significant deviation','0-49% — ignored plan'].map(v=>`<option ${q.ruleCompliance===v?'selected':''}>${v}</option>`).join('')}</select>
+      </div>
+      <div class="field"><label>Session</label><select id="q-session">${SESSIONS.map(v=>`<option ${q.session===v?'selected':''}>${v}</option>`).join('')}</select></div>
+      <div class="field"><label>Add. note</label><input id="q-addnote" type="text" placeholder="Anything important about this trade" value="${q.additionalNote}"/></div>
+      <div class="field"><label>Poză grafic</label><input id="q-photo" type="file" accept="image/*" style="padding:4px"/></div>
+      <button class="btn" id="add-trade-btn">Add paper trade</button>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>Trade journal</h2>${state.trades.length? `<button class="btn danger" id="delete-all-btn">Delete all</button>`:''}</div>
+      ${state.trades.length===0 ? `<div class="empty">Fara trade-uri in jurnal.</div>` : `
+      <div class="table-wrap"><table class="journal"><thead><tr>
+        <th>Date</th><th>Pair</th><th>Direction</th><th>HTF</th><th>Setup</th><th>Entry</th><th>SL</th><th>Exit</th><th>R</th><th></th>
+      </tr></thead><tbody>
+        ${state.trades.slice().reverse().map(t=>{
+          const R = calcR(t);
+          return `<tr style="${R==null?'':R>0?'background:rgba(62,230,166,.16);':'background:rgba(251,113,133,.16);'}">
+            <td>${t.date}</td><td>${t.pair}</td><td>${t.direction}</td><td>${t.htfBias}</td><td>${t.setup}</td>
+            <td>${t.entry||'-'}</td><td>${t.sl||'-'}</td><td>${t.exit||'-'}</td>
+            <td class="${rClass(R)}">${R===null?'open':fmtR(R)}</td>
+            <td style="white-space:nowrap">${t.photo?`<button class="link-btn" onclick="showPhoto(${t.id})">📷</button> `:''}<button class="link-btn" data-del="${t.id}">Delete</button></td>
+          </tr>`;
+        }).join('')}
+      </tbody></table></div>`}
+    </div>
+  `;
+}
+
+/* ---------------- REVIEW ---------------- */
+function viewReview(){
+  const closed = closedTrades();
+  const wins = closed.filter(t=>t.R>0).length;
+  const losses = closed.filter(t=>t.R<0).length;
+  const total = closed.length;
+  const winRate = total ? (wins/total*100) : 0;
+  const totalR = closed.reduce((s,t)=>s+t.R,0);
+
+  function group(field, values){
+    return values.map(v=>{
+      const rows = closed.filter(t=>t[field]===v);
+      const w = rows.filter(t=>t.R>0).length;
+      const r = rows.reduce((s,t)=>s+t.R,0);
+      return {name:v, trades:rows.length, wins:w, R:r};
+    });
+  }
+  const dir = group('direction',['BUY','SELL']);
+  const htf = group('htfBias',['BULLISH','BEARISH','NEUTRAL']);
+
+  const pairHtf = {};
+  closed.forEach(t=>{
+    const key = `${t.pair} · ${t.htfBias}`;
+    pairHtf[key] = pairHtf[key] || {trades:0,wins:0,R:0};
+    pairHtf[key].trades++;
+    if(t.R>0) pairHtf[key].wins++;
+    pairHtf[key].R += t.R;
+  });
+
+  const avgWin = wins ? closed.filter(t=>t.R>0).reduce((s,t)=>s+t.R,0)/wins : 0;
+  const avgLoss = losses ? closed.filter(t=>t.R<0).reduce((s,t)=>s+t.R,0)/losses : 0;
+  const grossWin = closed.filter(t=>t.R>0).reduce((s,t)=>s+t.R,0);
+  const grossLoss = Math.abs(closed.filter(t=>t.R<0).reduce((s,t)=>s+t.R,0));
+  const profitFactor = grossLoss ? (grossWin/grossLoss).toFixed(2) : '-';
+  const expectancy = total ? totalR/total : 0;
+
+  let running = 0, peak = 0, maxDD = 0;
+  let curStreakW = 0, curStreakL = 0, bestStreakW = 0, worstStreakL = 0;
+  closed.forEach(t=>{
+    running += t.R; peak = Math.max(peak, running);
+    maxDD = Math.min(maxDD, running - peak);
+    if(t.R>0){ curStreakW++; curStreakL=0; bestStreakW=Math.max(bestStreakW,curStreakW); }
+    else if(t.R<0){ curStreakL++; curStreakW=0; worstStreakL=Math.max(worstStreakL,curStreakL); }
+    else { curStreakW=0; curStreakL=0; }
+  });
+  const currentDD = running - peak;
+
+  function complianceBucket(t){
+    const c = t.ruleCompliance || '';
+    if(c.startsWith('100')) return '90-100%';
+    if(c.startsWith('70')) return '70-89%';
+    if(c.startsWith('50')) return '50-69%';
+    return '0-49%';
+  }
+  const buckets = ['90-100%','70-89%','50-69%','0-49%'].map(b=>{
+    const rows = closed.filter(t=>complianceBucket(t)===b);
+    const w = rows.filter(t=>t.R>0).length;
+    const r = rows.reduce((s,t)=>s+t.R,0);
+    return {name:b, trades:rows.length, wins:w, R:r};
+  });
+
+  const bySession = {};
+  closed.forEach(t=>{
+    bySession[t.session] = bySession[t.session] || {trades:0,wins:0,R:0};
+    bySession[t.session].trades++;
+    if(t.R>0) bySession[t.session].wins++;
+    bySession[t.session].R += t.R;
+  });
+
+  return `
+    <div class="stat"><label>Total R</label><div class="val ${rClass(totalR)}">${fmtR(totalR)}</div></div>
+    <div class="stat"><label>Wins</label><div class="val green">${wins}</div></div>
+    <div class="stat"><label>Losses</label><div class="val red">${losses}</div></div>
+    <div class="stat"><label>Win rate</label><div class="val">${winRate.toFixed(1)}%</div></div>
+
+    <div class="card">
+      <div class="card-head"><h2>📈 Curba de equity (R cumulativ)</h2><button class="btn small secondary" onclick="exportCSV()"> CSV</button></div>
+      <canvas id="eq-cv" style="width:100%;height:180px"></canvas>
+    </div>
+
+    <div class="card">
+      <h2>Direction</h2>
+      ${dir.map(d=>`<div class="breakdown-row"><span class="name">${d.name}</span><span class="mid">${d.wins}W / ${d.trades-d.wins}L &nbsp; ${d.trades?((d.wins/d.trades)*100).toFixed(1):'0.0'}%</span><span class="r ${rClass(d.R)}">${fmtR(d.R)}</span></div>`).join('')}
+    </div>
+
+    <div class="card">
+      <h2>HTF Bias</h2>
+      ${htf.map(d=>`<div class="breakdown-row"><span class="name">${d.name==='BULLISH'||d.name==='BEARISH'?('WITH/'+d.name):d.name}</span><span class="mid">${d.wins}W / ${d.trades-d.wins}L &nbsp; ${d.trades?((d.wins/d.trades)*100).toFixed(1):'0.0'}%</span><span class="r ${rClass(d.R)}">${fmtR(d.R)}</span></div>`).join('')}
+    </div>
+
+    <div class="card">
+      <h2>Pair + HTF breakdown</h2>
+      ${Object.keys(pairHtf).length===0 ? `<div class="empty">Fara trade-uri inca.</div>` : Object.entries(pairHtf).map(([name,d])=>`
+        <div class="breakdown-row"><span class="name">${name}</span><span class="mid">${d.trades} trade</span><span class="r ${rClass(d.R)}">${fmtR(d.R)}</span></div>
+      `).join('')}
+    </div>
+
+    <div class="card">
+      <h2>Expectancy &amp; Risk</h2>
+      <div class="grid4">
+        <div><span class="mini-stat-label">Expectancy/trade</span><div class="mini-stat-val ${rClass(expectancy)}">${fmtR(expectancy)}</div></div>
+        <div><span class="mini-stat-label">Avg win</span><div class="mini-stat-val green">${fmtR(avgWin)}</div></div>
+        <div><span class="mini-stat-label">Avg loss</span><div class="mini-stat-val red">${fmtR(avgLoss)}</div></div>
+        <div><span class="mini-stat-label">Profit factor</span><div class="mini-stat-val">${profitFactor}</div></div>
+      </div>
+      <p class="small-note" style="margin-top:8px;">Expectanta pozitiva inseamna ca trade-ul mediu istoric a fost profitabil in termeni de R.</p>
+      <hr class="divider"/>
+      <div class="grid4">
+        <div><span class="mini-stat-label">Max drawdown</span><div class="mini-stat-val red">${fmtR(maxDD)}</div></div>
+        <div><span class="mini-stat-label">Current DD</span><div class="mini-stat-val green">${fmtR(currentDD)}</div></div>
+        <div><span class="mini-stat-label">Best win streak</span><div class="mini-stat-val green">${bestStreakW}</div></div>
+        <div><span class="mini-stat-label">Worst loss streak</span><div class="mini-stat-val red">${worstStreakL}</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Rule Compliance</h2>
+      ${buckets.map(b=>`<div class="breakdown-row"><span class="name">${b.name}</span><span class="mid">${b.trades} trades &nbsp; ${b.trades?((b.wins/b.trades)*100).toFixed(1):'0.0'}% win</span><span class="r ${rClass(b.R)}">${fmtR(b.R)}</span></div>`).join('')}
+      <p class="small-note" style="margin-top:10px;">Arata daca executia disciplinata este asociata cu rezultate mai bune.</p>
+    </div>
+
+    <div class="card">
+      <h2>Session Performance</h2>
+      ${Object.keys(bySession).length===0 ? `<div class="empty">Adauga trade-uri pentru a vedea performanta pe sesiune.</div>` : Object.entries(bySession).map(([name,d])=>`
+        <div class="breakdown-row"><span class="name">${name}</span><span class="mid">${d.trades} trade · ${(d.wins/d.trades*100).toFixed(0)}% win</span><span class="r ${rClass(d.R)}">${fmtR(d.R)}</span></div>
+      `).join('')}
+    </div>
+  `;
+}
+
+/* ---------------- IMPROVE ---------------- */
+function viewImprove(){
+  const closed = closedTrades();
+  const noteCounts = {};
+  closed.forEach(t=>{
+    if(!t.note) return;
+    noteCounts[t.note] = (noteCounts[t.note]||0)+1;
+  });
+  const patterns = Object.entries(noteCounts).sort((a,b)=>b[1]-a[1]).filter(p=>p[1]>=2);
+
+  const bySetup = {};
+  closed.forEach(t=>{
+    bySetup[t.setup] = bySetup[t.setup] || {trades:0,wins:0,R:0};
+    bySetup[t.setup].trades++;
+    if(t.R>0) bySetup[t.setup].wins++;
+    bySetup[t.setup].R += t.R;
+  });
+
+  return `
+    <div class="card">
+      <h2>Improve</h2>
+      <p class="card-sub">Foloseste jurnalul pentru a identifica tipare de comportament repetate. Datele raman pe acest dispozitiv.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h2>🌙 Review zilnic</h2></div>
+      <div id="daily-box"></div>
+    </div>
+
+    <div class="card">
+      <h2>Behavior patterns</h2>
+      ${patterns.length===0 ? `<div class="empty">Adauga trade-uri pentru a descoperi tipare de comportament.</div>` : patterns.map(p=>`
+        <div class="breakdown-row"><span class="name">${p[0]}</span><span class="mid">${p[1]} aparitii</span></div>
+      `).join('')}
+    </div>
+
+    <div class="card">
+      <h2>Setup performance</h2>
+      ${Object.keys(bySetup).length===0 ? `<div class="empty">Fara date de setup inca.</div>` : Object.entries(bySetup).map(([name,d])=>`
+        <div class="breakdown-row"><span class="name">${name}</span><span class="mid">${d.trades} trade · ${(d.wins/d.trades*100).toFixed(0)}% win</span><span class="r ${rClass(d.R)}">${fmtR(d.R)}</span></div>
+      `).join('')}
+    </div>
+
+    <div class="card">
+      <h2>Next focus</h2>
+      <div class="field stacked"><label>Next focus</label><textarea id="next-focus" placeholder="Care este singurul comportament pe care vrei sa-l imbunatatesti acum?">${state.nextFocus||''}</textarea></div>
+      <button class="btn" id="save-focus-btn">Save focus</button>
+    </div>
+  `;
+}
+
+/* ---------------- BINDING ---------------- */
+function bindTabContentEvents(){
+  if(state.tab==='dashboard'){
+    const eb = document.getElementById('export-btn');
+    if(eb) eb.onclick = exportBackup;
+    const ib = document.getElementById('import-btn');
+    const fi = document.getElementById('import-file');
+    if(ib && fi){
+      ib.onclick = ()=>fi.click();
+      fi.onchange = ()=>{ if(fi.files && fi.files[0]) importBackup(fi.files[0]); fi.value=''; };
+    }
+    const shOn = document.getElementById('sh-on');
+    if(shOn) shOn.onchange = ()=>{ state.shield.enabled = shOn.checked; saveState(); renderTab(); };
+    ['sh-account','sh-risk','sh-daily','sh-dd'].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.onchange = ()=>{
+        state.shield.account = document.getElementById('sh-account').value;
+        state.shield.riskPerTrade = document.getElementById('sh-risk').value;
+        state.shield.dailyPct = document.getElementById('sh-daily').value;
+        state.shield.maxDDPct = document.getElementById('sh-dd').value;
+        saveState();
+        renderTab();
+      };
+    });
+
+    refreshAlertForm();
+
+    const instBtn = document.getElementById('install-btn');
+    const iosHint = document.getElementById('ios-hint');
+    if(instBtn){
+      if(/iphone|ipad|ipod/i.test(navigator.userAgent) && iosHint) iosHint.style.display = 'block';
+      if(deferredPrompt) instBtn.style.display = 'inline-block';
+      instBtn.onclick = async ()=>{
+        if(deferredPrompt){
+          deferredPrompt.prompt();
+          const r = await deferredPrompt.userChoice;
+          if(r.outcome==='accepted') instBtn.style.display = 'none';
+          deferredPrompt = null;
+        } else {
+          alert('Android: meniul browser (⋮) → „Add to Home screen” / „Instalează aplicația”.\niPhone: Share (⬆) → „Add to Home Screen”.');
+        }
+      };
+    }
+  }
+
+  document.querySelectorAll('[data-goto]').forEach(el=>{
+    el.onclick = ()=>{ state.tab = el.dataset.goto; saveState(false); render(); };
+  });
+
+  if(state.tab==='plan'){
+    live('p-pair', v=>state.plan.pair=valOrEmpty(v));
+    live('p-direction', v=>state.plan.direction=valOrEmpty(v));
+    live('p-htf', v=>state.plan.htfBias=valOrEmpty(v));
+    live('p-session', v=>state.plan.session=valOrEmpty(v));
+    live('p-setup', v=>state.plan.setup=valOrEmpty(v));
+    live('p-setupnotes', v=>state.plan.setupNotes=v);
+    live('p-risk', v=>state.plan.riskPercent=v);
+    live('p-rr', v=>state.plan.plannedRR=v);
+    live('p-decision', v=>state.plan.decision=v);
+
+    document.querySelectorAll('[data-stepheader]').forEach(el=>{
+      el.onclick = ()=>{
+        const n = parseInt(el.dataset.stepheader);
+        planOpenStep = planOpenStep === n ? 0 : n;
+        renderTab();
+      };
+    });
+    document.querySelectorAll('[data-next]').forEach(el=>{
+      el.onclick = ()=>{
+        planOpenStep = parseInt(el.dataset.next);
+        saveState(false);
+        renderTab();
+      };
+    });
+    document.querySelectorAll('[data-check]').forEach(el=>{
+      el.onclick = ()=>{
+        const i = parseInt(el.dataset.check);
+        state.plan.checklist[i] = !state.plan.checklist[i];
+        saveState();
+        renderTab();
+      };
+    });
+    const saveBtn = document.getElementById('save-plan-btn');
+    if(saveBtn) saveBtn.onclick = ()=>{
+      state.planActive = true;
+      state.tab = 'execute';
+      saveState();
+      render();
+    };
+  }
+
+  if(state.tab==='execute'){
+    live('e-entry', v=>state.activeExecution.entry=v);
+    live('e-sl', v=>state.activeExecution.sl=v);
+    live('e-tp', v=>state.activeExecution.tp=v);
+    live('e-exit', v=>state.activeExecution.exit=v);
+    live('e-quality', v=>state.activeExecution.executionQuality=v);
+    live('e-status', v=>state.activeExecution.entryStatus=v);
+
+    renderTimeCard();
+
+    const loadBtn = document.getElementById('load-plan-btn');
+    if(loadBtn) loadBtn.onclick = ()=>{ state.planActive = true; saveState(); renderTab(); };
+    const saveExec = document.getElementById('save-execution-btn');
+    if(saveExec) saveExec.onclick = ()=>{
+      const e = state.activeExecution;
+      const p = state.plan;
+      const trade = {
+        id: Date.now(),
+        date: new Date().toISOString().slice(0,10),
+        pair: p.pair||'-', direction: p.direction||'-', htfBias: p.htfBias||'-',
+        setup: p.setup||'-', entry: e.entry, sl: e.sl, exit: e.exit, resultR:'',
+        note: e.entryStatus, ruleCompliance:'100% — followed rules', session: p.session||'-',
+        additionalNote: `Execution quality: ${e.executionQuality}`, photo:''
+      };
+      state.trades.push(trade);
+      state.tab='trades';
+      saveState();
+      render();
+    };
+  }
+
+  if(state.tab==='trades'){
+    calcPos();
+
+    const ph = document.getElementById('q-photo');
+    if(ph) ph.onchange = ()=>{
+      if(ph.files && ph.files[0]) readPhoto(ph.files[0], d=>{ pendingPhoto = d; alert('📸 Poză atașată — va fi salvată cu trade-ul.'); });
+    };
+
+    live('q-pair', v=>state.quickTrade.pair=v);
+    live('q-direction', v=>state.quickTrade.direction=v);
+    live('q-htf', v=>state.quickTrade.htfBias=v);
+    live('q-date', v=>state.quickTrade.date=v);
+    live('q-setup', v=>state.quickTrade.setup=v);
+    live('q-entry', v=>state.quickTrade.entry=v);
+    live('q-sl', v=>state.quickTrade.sl=v);
+    live('q-exit', v=>state.quickTrade.exit=v);
+    live('q-resultr', v=>state.quickTrade.resultR=v);
+    live('q-note', v=>state.quickTrade.note=v);
+    live('q-compliance', v=>state.quickTrade.ruleCompliance=v);
+    live('q-session', v=>state.quickTrade.session=v);
+    live('q-addnote', v=>state.quickTrade.additionalNote=v);
+
+    const useBtn = document.getElementById('use-plan-btn');
+    if(useBtn) useBtn.onclick = ()=>{
+      const p = state.plan;
+      const q = state.quickTrade;
+      if(p.pair) q.pair = p.pair;
+      if(p.direction) q.direction = p.direction;
+      if(p.htfBias) q.htfBias = p.htfBias;
+      if(p.setup) q.setup = p.setup;
+      if(p.session) q.session = p.session;
+      saveState();
+      renderTab();
+    };
+    const addBtn = document.getElementById('add-trade-btn');
+    if(addBtn) addBtn.onclick = ()=>{
+      state.trades.push(Object.assign({id:Date.now(), photo:pendingPhoto||''}, state.quickTrade));
+      pendingPhoto = '';
+      saveState();
+      renderTab();
+    };
+    document.querySelectorAll('[data-del]').forEach(el=>{
+      el.onclick = ()=>{
+        const id = parseInt(el.dataset.del);
+        state.trades = state.trades.filter(t=>t.id!==id);
+        saveState();
+        renderTab();
+      };
+    });
+    const delAll = document.getElementById('delete-all-btn');
+    if(delAll) delAll.onclick = ()=>{
+      if(confirm('Stergi toate trade-urile din jurnal?')){
+        state.trades = [];
+        saveState();
+        renderTab();
+      }
+    };
+  }
+
+  if(state.tab==='review'){
+    drawEquity();
+  }
+
+  if(state.tab==='improve'){
+    renderDaily();
+    live('next-focus', v=>state.nextFocus=v);
+    const saveFocus = document.getElementById('save-focus-btn');
+    if(saveFocus) saveFocus.onclick = ()=>{
+      state.nextFocus = document.getElementById('next-focus').value;
+      saveState();
+      renderTab();
+    };
+  }
+}
+
+function valOrEmpty(v){ return v==='-' ? '' : v; }
+
+loadState();
+loadNews();
+checkAlerts();
+checkTimeAlerts();
+setInterval(tickClocks, 30000);
+setInterval(loadNews, 300000);
+setInterval(checkAlerts, 30000);
+setInterval(checkTimeAlerts, 30000);
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
