@@ -1,18 +1,18 @@
-const CACHE = 'ciubi-v1';
-self.addEventListener('install', e => { self.skipWaiting(); });
-self.addEventListener('activate', e => { e.waitUntil(self.clients.claim()); });
-self.addEventListener('fetch', e => {
-  if (e.request.method !== 'GET' || !e.request.url.startsWith(self.location.origin)) return;
-  e.respondWith(
-    caches.open(CACHE).then(async c => {
-      try {
-        const res = await fetch(e.request);
-        if (res && res.ok) c.put(e.request, res.clone());
-        return res;
-      } catch (err) {
-        const hit = await c.match(e.request);
-        return hit || (await c.match('./index.html')) || Response.error();
-      }
-    })
-  );
+/* Kill old Trading Companion cache so this site can show the pitch. */
+self.addEventListener('install', (e) => {
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', (e) => {
+  e.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.map((k) => caches.delete(k)));
+    await self.registration.unregister();
+    const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const client of windows) {
+      const url = new URL(client.url);
+      url.searchParams.set('v', 'pitch');
+      client.navigate(url.toString());
+    }
+  })());
 });

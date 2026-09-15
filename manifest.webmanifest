@@ -1,13 +1,10 @@
 {
-  "name": "Ciubi Trading Companion",
-  "short_name": "Ciubi",
-  "description": "Jurnal de trading disciplinat: Plan, Execute, Review, Improve.",
-  "start_url": ".",
+  "name": "Ciubi — Pitch sponsor",
+  "short_name": "Ciubi Pitch",
+  "description": "Pitch pentru sponsori: ecosistemul Ciubi — Trading, Aprozar, Servicii Locale.",
+  "start_url": "./?v=pitch",
   "scope": ".",
-  "display": "standalone",
-  "background_color": "#070b14",
-  "theme_color": "#070b14",
-  "icons": [
-    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
-  ]
+  "display": "browser",
+  "background_color": "#fafaf7",
+  "theme_color": "#2d6a4f"
 }

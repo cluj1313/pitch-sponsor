@@ -4,6 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ciubi — Ecosistem local românesc | Pitch sponsor</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<script>
+(function () {
+  if (!("serviceWorker" in navigator)) return;
+  var KEY = "pitch-cache-cleared";
+  Promise.all([
+    navigator.serviceWorker.getRegistrations().then(function (regs) {
+      return Promise.all(regs.map(function (r) { return r.unregister(); }));
+    }),
+    caches.keys().then(function (keys) {
+      return Promise.all(keys.map(function (k) { return caches.delete(k); }));
+    })
+  ]).then(function () {
+    if (sessionStorage.getItem(KEY)) return;
+    sessionStorage.setItem(KEY, "1");
+    location.replace("./?v=pitch");
+  });
+})();
+</script>
 <style>
 :root{--port:#e85d04;--verde:#2d6a4f;--maro:#6b4423;--bg:#fafaf7;--ink:#1c2430;--mut:#6b7280;}
 *{box-sizing:border-box;margin:0;padding:0;}
