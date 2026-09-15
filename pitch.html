@@ -7,8 +7,8 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <script>
 (function () {
-  if (location.search.indexOf("v=tab2") === -1) {
-    location.replace("./?v=tab2");
+  if (location.search.indexOf("v=ord1") === -1) {
+    location.replace("./?v=ord1");
     return;
   }
   if ("serviceWorker" in navigator) {
@@ -51,10 +51,12 @@ h1,h2,h3{color:var(--ink);margin-bottom:8px;}
 .card ul{font-size:.85rem;color:var(--mut);padding-left:20px;}
 .card li{margin:4px 0;}
 .eco{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;margin:20px 0;}
-.eco div{padding:14px;border-radius:12px;font-weight:700;color:#fff;font-size:.9rem;}
+.eco a{padding:14px;border-radius:12px;font-weight:700;color:#fff;font-size:.9rem;text-decoration:none;display:block;}
 .eco .t{background:var(--port);}
 .eco .p{background:var(--verde);}
 .eco .m{background:var(--maro);}
+.card-link{text-decoration:none;color:inherit;display:block;transition:transform .15s,box-shadow .15s;}
+.card-link:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08);}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px;}
 .stat{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:16px;text-align:center;}
 .stat b{display:block;font-size:1.5rem;color:var(--verde);}
@@ -78,25 +80,29 @@ footer{text-align:center;color:var(--mut);font-size:.75rem;margin-top:20px;}
 <p><b>Trei aplicații, un singur ecosistem românesc:</b> trading, hrană & servicii locale</p>
 <p>Un ecosistem digital construit de la zero, fără buget, care conectează trei tipuri de utilizatori români care astăzi nu au o platformă dedicată: traderii, producătorii agricoli și meșteșugarii / furnizorii de servicii locale. Toate trei se promovează reciproc.</p>
 <div class="btn-row">
-<a href="https://cluj1313.github.io/ciubi-trading-companion3/" class="btn btn-port" target="_blank" rel="noopener noreferrer">📈 Trading Companion</a>
 <a href="https://ever-prism-birch-garden.grok.me/" class="btn btn-verde" target="_blank" rel="noopener noreferrer">🥕 Aprozar Românesc</a>
 <a href="https://cluj1313.github.io/" class="btn btn-maro" target="_blank" rel="noopener noreferrer">🧰 Servicii Locale</a>
+<a href="https://cluj1313.github.io/ciubi-trading-companion3/" class="btn btn-port" target="_blank" rel="noopener noreferrer">📈 Trading Companion</a>
 </div>
 </div>
 
 <div class="section">
 <h2>Cele trei produse</h2>
 <div class="grid-3">
-<div class="card"><h3>📈 Ciubi Trading Companion</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Asistentul de disciplină al traderului</p><ul><li>Plan pre-trade cu checklist SMC</li><li><b>Funded Shield</b>: limită zilnică & drawdown cu alertă STOP</li><li>Alerte live (preț, sesiuni, lumânări)</li><li>Jurnal cu poze, curbă equity, CSV</li><li>Calculator poziție + review zilnic</li><li>PWA instalabilă pe telefon</li></ul></div>
-<div class="card"><h3>🥕 Aprozar Românesc</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Piața satului, fără intermediari</p><ul><li>Producători și ferme pe hartă</li><li>„Poveștile fermierilor" — autentic</li><li>Categorii: fructe, legume, lactate, cereale</li><li>Sponsor activ: <b>Dor de Casă</b> (300+ magazine)</li><li>🚀 <b>UPDATE major în curând</b></li></ul></div>
-<div class="card"><h3>🧰 Servicii Locale</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Meșteșugarii orașului tău, la un click</p><ul><li>12 categorii: babysitter, croitorie, curățenie, electric, instalații, IT, tapiserie, trading, transport etc.</li><li>Profile cu preț, locație, recenzii</li><li>Specialiștii se înscriu gratuit</li><li>Localizare pe oraș (Gherla → extensibil)</li><li>Model scalabil la nivel național</li></ul></div>
+<a class="card card-link" href="https://ever-prism-birch-garden.grok.me/" target="_blank" rel="noopener noreferrer"><h3>🥕 Aprozar Românesc</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Piața satului, fără intermediari</p><ul><li>Producători și ferme pe hartă</li><li>„Poveștile fermierilor" — autentic</li><li>Categorii: fructe, legume, lactate, cereale</li><li>Sponsor activ: <b>Dor de Casă</b> (300+ magazine)</li><li>🚀 <b>UPDATE major în curând</b></li></ul></a>
+<a class="card card-link" href="https://cluj1313.github.io/" target="_blank" rel="noopener noreferrer"><h3>🧰 Servicii Locale</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Meșteșugarii orașului tău, la un click</p><ul><li>12 categorii: babysitter, croitorie, curățenie, electric, instalații, IT, tapiserie, trading, transport etc.</li><li>Profile cu preț, locație, recenzii</li><li>Specialiștii se înscriu gratuit</li><li>Localizare pe oraș (Gherla → extensibil)</li><li>Model scalabil la nivel național</li></ul></a>
+<a class="card card-link" href="https://cluj1313.github.io/ciubi-trading-companion3/" target="_blank" rel="noopener noreferrer"><h3>📈 Ciubi Trading Companion</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Asistentul de disciplină al traderului</p><ul><li>Plan pre-trade cu checklist SMC</li><li><b>Funded Shield</b>: limită zilnică & drawdown cu alertă STOP</li><li>Alerte live (preț, sesiuni, lumânări)</li><li>Jurnal cu poze, curbă equity, CSV</li><li>Calculator poziție + review zilnic</li><li>PWA instalabilă pe telefon</li></ul></a>
 </div>
 </div>
 
 <div class="section">
 <h2>De ce funcționează — triunghiul ecosistemului</h2>
 <p style="color:var(--mut);font-size:.9rem;">Fiecare aplicație rezolvă o nevoie reală a unei categorii de români, iar împreună formează un <b>circuit închis de încredere locală</b>:</p>
-<div class="eco"><div class="t">📈 Traderi</div><div class="p">🥕 Producători</div><div class="m">🧰 Meșteșugari</div></div>
+<div class="eco">
+<a class="p" href="https://ever-prism-birch-garden.grok.me/" target="_blank" rel="noopener noreferrer">🥕 Aprozar</a>
+<a class="m" href="https://cluj1313.github.io/" target="_blank" rel="noopener noreferrer">🧰 Servicii</a>
+<a class="t" href="https://cluj1313.github.io/ciubi-trading-companion3/" target="_blank" rel="noopener noreferrer">📈 Trading</a>
+</div>
 <p style="font-size:.88rem;text-align:center;color:var(--mut);margin-bottom:20px;">Traderul cumpără de la Aprozar · fermierul angajează un instalator de pe Servicii Locale · meșteșugarul investește profitul cu Trading Companion.</p>
 
 <div class="grid-3">
@@ -141,7 +147,7 @@ footer{text-align:center;color:var(--mut);font-size:.75rem;margin-top:20px;}
 <p style="margin-top:12px;"><b>Nume:</b> Cioban Iosif Gabriel</p>
 <p><b>Email:</b> <a href="mailto:cluj1313@gmail.com" target="_blank" rel="noopener noreferrer">cluj1313@gmail.com</a></p>
 <p><b>Telefon / WhatsApp:</b> <a href="https://wa.me/40770148119" target="_blank" rel="noopener noreferrer">0770 148 119</a></p>
-<p style="margin-top:16px;font-size:.85rem;"><b>Link-uri live:</b> <a href="https://cluj1313.github.io/ciubi-trading-companion3/" target="_blank" rel="noopener noreferrer">Trading Companion</a> · <a href="https://ever-prism-birch-garden.grok.me/" target="_blank" rel="noopener noreferrer">Aprozar Românesc</a> · <a href="https://cluj1313.github.io/" target="_blank" rel="noopener noreferrer">Servicii Locale</a></p>
+<p style="margin-top:16px;font-size:.85rem;"><b>Link-uri live:</b> <a href="https://ever-prism-birch-garden.grok.me/" target="_blank" rel="noopener noreferrer">Aprozar Românesc</a> · <a href="https://cluj1313.github.io/" target="_blank" rel="noopener noreferrer">Servicii Locale</a> · <a href="https://cluj1313.github.io/ciubi-trading-companion3/" target="_blank" rel="noopener noreferrer">Trading Companion</a></p>
 </div>
 
 <footer>Ciubi · Construit în România · 2026</footer>
