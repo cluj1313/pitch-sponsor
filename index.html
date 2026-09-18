@@ -3,12 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ciubi — Ecosistem local românesc | Pitch sponsor</title>
+<title>Ciubi — Pitch pentru parteneri</title>
+<meta name="description" content="Patru aplicații live, un circuit românesc: hrană de grădină, meserii, marfă fabricată aici și disciplină pentru bani. Pitch pentru sponsori.">
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta property="og:title" content="Ciubi — un circuit local, nu un banner">
+<meta property="og:description" content="Patru aplicații care se promovează reciproc. Construit fără buget. Caută partenerul care îl duce în toată țara.">
+<meta property="og:type" content="website">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,650;1,9..144,480;1,9..144,650&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <script>
 (function () {
-  if (location.search.indexOf("v=pr7") === -1) {
-    location.replace("./?v=pr7");
+  if (location.search.indexOf("v=pr8") === -1) {
+    location.replace("./?v=pr8");
     return;
   }
   if ("serviceWorker" in navigator) {
@@ -31,133 +39,434 @@
 })();
 </script>
 <style>
-:root{--port:#e85d04;--verde:#2d6a4f;--maro:#6b4423;--bordo:#6b1d1d;--bg:#fafaf7;--ink:#1c2430;--mut:#6b7280;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
-.wrap{max-width:720px;margin:0 auto;padding:20px;}
-h1,h2,h3{color:var(--ink);margin-bottom:8px;}
-.hero{text-align:center;padding:40px 20px;background:linear-gradient(135deg,#fff8f0,#f0fff4);}
-.hero h1{font-size:2rem;margin-bottom:10px;}
-.hero p{color:var(--mut);max-width:520px;margin:0 auto 20px;}
-.btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
-.btn{padding:10px 18px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.85rem;border:2px solid;}
-.btn-port{background:var(--port);color:#fff;border-color:var(--port);}
-.btn-verde{background:var(--verde);color:#fff;border-color:var(--verde);}
-.btn-maro{background:var(--maro);color:#fff;border-color:var(--maro);}
-.btn-bordo{background:var(--bordo);color:#fff;border-color:var(--bordo);}
-.section{margin:30px 0;}
-.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px;}
-.card{background:#fff;border:1px solid #e5e5e5;border-radius:14px;padding:18px;}
-.card .cover{width:100%;height:112px;object-fit:cover;border-radius:10px;margin-bottom:8px;display:block;background:#eee;}
-.card h3{font-size:1rem;margin-bottom:8px;}
-.card ul{font-size:.85rem;color:var(--mut);padding-left:20px;}
-.card li{margin:4px 0;}
-.eco{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;text-align:center;margin:20px 0;}
-@media(min-width:560px){.eco{grid-template-columns:repeat(4,1fr);}}
-.eco a{padding:14px;border-radius:12px;font-weight:700;color:#fff;font-size:.9rem;text-decoration:none;display:block;}
-.eco .t{background:var(--port);}
-.eco .p{background:var(--verde);}
-.eco .m{background:var(--maro);}
-.eco .b{background:var(--bordo);}
-.card-link{text-decoration:none;color:inherit;display:block;transition:transform .15s,box-shadow .15s;}
-.card-link:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08);}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px;}
-.stat{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:16px;text-align:center;}
-.stat b{display:block;font-size:1.5rem;color:var(--verde);}
-.stat small{color:var(--mut);font-size:.78rem;}
-.roadmap{list-style:none;counter-reset:step;}
-.roadmap li{counter-increment:step;padding:12px 12px 12px 48px;background:#fff;border:1px solid #e5e5e5;border-radius:10px;margin:8px 0;position:relative;font-size:.9rem;}
-.roadmap li::before{content:counter(step);position:absolute;left:12px;top:12px;width:26px;height:26px;background:var(--verde);color:#fff;border-radius:50%;text-align:center;line-height:26px;font-weight:700;font-size:.85rem;}
-.pack{background:#fff;border:1px solid #e5e5e5;border-radius:14px;padding:18px;margin:10px 0;}
-.pack h3{font-size:1rem;}
-.pack .price{font-weight:700;color:var(--port);font-size:.85rem;margin:6px 0;}
-.contact{background:var(--ink);color:#fff;border-radius:14px;padding:24px;margin-top:30px;}
-.contact b{color:var(--port);}
-.contact a{color:#fff;text-decoration:underline;}
-footer{text-align:center;color:var(--mut);font-size:.75rem;margin-top:20px;}
+:root{
+  --verde:#2d6a4f;--maro:#6b4423;--bordo:#6b1d1d;--port:#e85d04;
+  --paper:#f4efe6;--paper2:#ebe3d4;--card:#fffdf8;
+  --ink:#1a1612;--soft:#3f3830;--mut:#6f675c;--line:#ddd3c3;
+  --gold:#b0894a;--hero:#13110e;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Source Sans 3",-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65;font-size:17px}
+body::before{
+  content:"";pointer-events:none;position:fixed;inset:0;z-index:80;opacity:.045;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.9'/></svg>");
+}
+a{color:inherit}
+img{max-width:100%;display:block}
+.ribbon{height:5px;background:linear-gradient(90deg,var(--verde) 0 25%,var(--maro) 25% 50%,var(--bordo) 50% 75%,var(--port) 75% 100%)}
+.nav{
+  position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 22px;background:rgba(244,239,230,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.brand{font-family:var(--serif);font-weight:650;letter-spacing:.08em;font-size:.82rem}
+.nav-links{display:flex;gap:18px;align-items:center;font-size:.82rem;font-weight:600;color:var(--mut)}
+.nav-links a{text-decoration:none}
+.nav-links a:hover{color:var(--ink)}
+.wa{
+  background:var(--ink);color:#fff;text-decoration:none;font-weight:700;font-size:.78rem;
+  padding:8px 14px;border-radius:999px;letter-spacing:.02em;
+}
+.wa:hover{background:var(--verde)}
+.hero{
+  background:
+    radial-gradient(ellipse 70% 55% at 12% 20%,rgba(45,106,79,.28),transparent 55%),
+    radial-gradient(ellipse 50% 45% at 92% 8%,rgba(232,93,4,.2),transparent 50%),
+    radial-gradient(ellipse 40% 40% at 70% 90%,rgba(107,29,29,.22),transparent 50%),
+    var(--hero);
+  color:#f6f1e8;padding:72px 22px 80px;text-align:center;
+}
+.kicker{
+  display:inline-block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  color:#c9b89a;font-weight:700;margin-bottom:22px;
+}
+.hero h1{
+  font-family:var(--serif);font-weight:650;font-size:clamp(2.05rem,6.4vw,3.55rem);
+  line-height:1.12;max-width:16ch;margin:0 auto 22px;letter-spacing:-.02em;
+}
+.hero h1 em{font-style:italic;font-weight:480;color:#e8c9a0}
+.lead{max-width:38em;margin:0 auto 14px;color:#d5cbb8;font-size:1.12rem}
+.sub{max-width:34em;margin:0 auto 32px;color:#9a9080;font-size:.95rem}
+.cta-row,.btn-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;
+  text-decoration:none;font-weight:700;font-size:.88rem;border:1.5px solid transparent;
+}
+.btn-ink{background:#f6f1e8;color:var(--hero)}
+.btn-ghost{background:transparent;color:#f6f1e8;border-color:#5c5348}
+.btn-ghost:hover{border-color:#c9b89a}
+.apps{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.chip{
+  font-size:.78rem;font-weight:700;text-decoration:none;padding:7px 12px;border-radius:999px;color:#fff;
+}
+.chip.v{background:var(--verde)}.chip.m{background:var(--maro)}.chip.b{background:var(--bordo)}.chip.p{background:var(--port)}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+.section{padding:64px 0}
+.sec-label{
+  font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
+  font-weight:700;margin-bottom:10px;
+}
+h2{font-family:var(--serif);font-weight:650;font-size:clamp(1.55rem,3vw,2.05rem);line-height:1.2;margin-bottom:14px;letter-spacing:-.02em}
+.prose{color:var(--soft);max-width:40em}
+.prose p+p{margin-top:12px}
+.quote{
+  margin:0 auto;max-width:920px;padding:8px 22px 0;
+}
+.quote blockquote{
+  font-family:var(--serif);font-style:italic;font-weight:480;font-size:clamp(1.35rem,3vw,1.85rem);
+  line-height:1.35;color:var(--ink);padding:36px 28px;background:var(--paper2);border-radius:18px;
+  border-left:5px solid var(--gold);
+}
+.quote cite{display:block;margin-top:14px;font-family:var(--sans);font-style:normal;font-size:.82rem;color:var(--mut);letter-spacing:.04em}
+.story{list-style:none;border-left:2px solid var(--line);margin:28px 0 0 8px;padding:4px 0 4px 28px}
+.story li{position:relative;margin:0 0 32px;padding:0}
+.story li:last-child{margin-bottom:0}
+.story li::before{
+  content:"";position:absolute;left:-37px;top:6px;width:14px;height:14px;border-radius:50%;
+  background:var(--c);box-shadow:0 0 0 4px var(--paper);
+}
+.when{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--c);margin-bottom:4px}
+.story h3{font-family:var(--serif);font-size:1.2rem;margin-bottom:4px}
+.story p{color:var(--mut);font-size:.98rem;max-width:38em}
+.grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:28px}
+@media(min-width:760px){.grid.two{grid-template-columns:1fr 1fr}}
+.prod{
+  background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  text-decoration:none;color:inherit;display:flex;flex-direction:column;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.prod:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(28,20,12,.08)}
+.cover-wrap{position:relative;height:148px;background:#e8dfd0}
+.cover-wrap img{width:100%;height:148px;object-fit:cover}
+.prod-tag{
+  position:absolute;top:12px;left:12px;background:rgba(20,16,12,.78);color:#fff;
+  font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:6px;
+}
+.prod-body{padding:18px 18px 20px;border-top:3px solid var(--c);flex:1;display:flex;flex-direction:column}
+.prod-kicker{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--c);margin-bottom:4px}
+.prod h3{font-family:var(--serif);font-size:1.28rem;margin-bottom:8px}
+.prod-lead{color:var(--soft);font-size:.95rem;margin-bottom:12px}
+.prod ul{color:var(--mut);font-size:.88rem;padding-left:18px;margin-bottom:14px}
+.prod li{margin:3px 0}
+.go{margin-top:auto;font-weight:700;font-size:.88rem;color:var(--c);text-decoration:none}
+.why{display:grid;gap:14px;margin-top:28px}
+@media(min-width:700px){.why{grid-template-columns:repeat(3,1fr)}}
+.why article{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.why h3{font-family:var(--serif);font-size:1.12rem;margin-bottom:8px}
+.why p{color:var(--mut);font-size:.9rem}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+@media(min-width:700px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 12px;text-align:center}
+.stat b{display:block;font-family:var(--serif);font-size:1.85rem;line-height:1;color:var(--verde);margin-bottom:6px}
+.stat small{color:var(--mut);font-size:.78rem}
+.note{margin-top:18px;color:var(--mut);font-size:.92rem;text-align:center;max-width:38em;margin-left:auto;margin-right:auto}
+.gain{list-style:none;margin-top:20px}
+.gain li{
+  display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;
+  padding:14px 0;border-bottom:1px solid var(--line);font-size:.98rem;color:var(--soft);
+}
+.gain li:last-child{border-bottom:0}
+.num{
+  width:28px;height:28px;border-radius:50%;background:var(--ink);color:#f6f1e8;
+  font-size:.75rem;font-weight:700;display:grid;place-items:center;
+}
+.roadmap{list-style:none;counter-reset:step;margin-top:20px}
+.roadmap li{
+  counter-increment:step;position:relative;padding:16px 16px 16px 58px;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;font-size:.95rem;color:var(--soft);
+}
+.roadmap li::before{
+  content:counter(step);position:absolute;left:14px;top:14px;width:28px;height:28px;
+  background:var(--verde);color:#fff;border-radius:50%;text-align:center;line-height:28px;font-weight:700;font-size:.82rem;
+}
+.packs{display:grid;gap:14px;margin-top:24px}
+@media(min-width:800px){.packs{grid-template-columns:1.15fr .92fr .92fr;align-items:stretch}}
+.pack{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column}
+.pack.feat{background:var(--ink);color:#f6f1e8;border-color:var(--ink)}
+.pack.feat .mut,.pack.feat p{color:#c9b89a}
+.badge{display:inline-block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:8px}
+.pack h3{font-family:var(--serif);font-size:1.25rem;margin-bottom:8px}
+.pack p{font-size:.92rem;color:var(--mut);flex:1}
+.price{margin-top:16px;font-weight:700;font-size:.85rem;color:var(--port)}
+.pack.feat .price{color:#e8c9a0}
+.proof{margin-top:18px;font-size:.9rem;color:var(--mut)}
+.contact{
+  background:
+    radial-gradient(ellipse 50% 60% at 100% 0%,rgba(232,93,4,.18),transparent 50%),
+    var(--ink);
+  color:#f6f1e8;border-radius:22px;padding:36px 28px;margin:10px 0 20px;
+}
+.contact h2{color:#fff}
+.contact .prose{color:#c9b89a;margin-bottom:18px}
+.rows{display:grid;gap:8px;font-size:1rem}
+.rows a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.rows b{color:#e8c9a0;font-weight:700;min-width:9.5em;display:inline-block}
+.live-links{margin-top:20px;font-size:.88rem;color:#9a9080}
+.live-links a{color:#f6f1e8}
+footer{text-align:center;color:var(--mut);font-size:.75rem;padding:8px 0 36px}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hero{padding:52px 18px 56px}
+  .section{padding:48px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .prod{transition:none}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<div class="hero">
-<h1>CIUBI · Ecosistem local</h1>
-<p><b>Patru aplicații, un singur ecosistem românesc:</b> trading, hrană de grădină, meserii și produse fabricate aici</p>
-<p>Un ecosistem digital construit de la zero, fără buget, care conectează traderii, producătorii agricoli, meșteșugarii și atelierele care fabrică în România. Toate patru se promovează reciproc.</p>
-<div class="btn-row">
-<a href="https://ever-prism-birch-garden.grok.me/" class="btn btn-verde" target="_blank" rel="noopener noreferrer">🥕 Aprozar Românesc</a>
-<a href="https://servicii-locale3.grok.me/" class="btn btn-maro" target="_blank" rel="noopener noreferrer">🧰 Servicii Locale</a>
-<a href="https://bloom-falcon-zephyr-atlas.grok.me/" class="btn btn-bordo" target="_blank" rel="noopener noreferrer">🍅 Produse Românești</a>
-<a href="https://cluj1313.github.io/ciubi-trading-companion3/" class="btn btn-port" target="_blank" rel="noopener noreferrer">📈 Trading Companion</a>
-</div>
+<div class="ribbon" aria-hidden="true"></div>
+<nav class="nav">
+  <div class="brand">CIUBI</div>
+  <div class="nav-links">
+    <a href="#ideea">Ideea</a>
+    <a href="#circuit">Circuitul</a>
+    <a href="#apps">Aplicațiile</a>
+    <a href="#partener">Partener</a>
+  </div>
+  <a class="wa" href="https://wa.me/40770148119">WhatsApp</a>
+</nav>
+
+<header class="hero">
+  <p class="kicker">Pitch pentru parteneri · 3 minute de citit</p>
+  <h1>România încă produce. <em>Lipsește locul unde se întâlnesc.</em></h1>
+  <p class="lead">Patru aplicații live, un singur circuit: hrană de grădină, meserii de lângă casă, marfă fabricată aici — și un instrument de disciplină pentru bani.</p>
+  <p class="sub">Construit de la zero, fără buget. Nu finanțezi o idee. Finanțezi scalarea a ceva ce deja rulează pe telefon.</p>
+  <div class="cta-row">
+    <a class="btn btn-ink" href="https://wa.me/40770148119">Scrie pe WhatsApp</a>
+    <a class="btn btn-ghost" href="#apps">Vezi aplicațiile live</a>
+  </div>
+  <div class="apps">
+    <a class="chip v" href="https://ever-prism-birch-garden.grok.me/">Aprozar Românesc</a>
+    <a class="chip m" href="https://servicii-locale3.grok.me/">Servicii Locale</a>
+    <a class="chip b" href="https://bloom-falcon-zephyr-atlas.grok.me/">Produse Românești</a>
+    <a class="chip p" href="https://cluj1313.github.io/ciubi-trading-companion3/">Trading Companion</a>
+  </div>
+</header>
+
+<div class="quote">
+  <blockquote>
+    Un banner e o reclamă. Un loc în patru aplicații care se trimit una la alta e prezență.
+    <cite>— logica ecosistemului Ciubi</cite>
+  </blockquote>
 </div>
 
-<div class="section">
-<h2>Cele patru produse</h2>
-<div class="grid-3">
-<a class="card card-link" href="https://ever-prism-birch-garden.grok.me/" target="_blank" rel="noopener noreferrer"><img class="cover" src="https://ever-prism-birch-garden.grok.me/og.jpg" alt=""><h3>🥕 Aprozar Românesc</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Piața satului, fără intermediari</p><ul><li>Producători și ferme pe hartă</li><li>„Poveștile fermierilor" — autentic</li><li>Categorii: fructe, legume, lactate, cereale</li><li>Sponsor activ: <b>Dor de Casă</b> (300+ magazine)</li><li>🚀 <b>UPDATE major în curând</b></li></ul></a>
-<a class="card card-link" href="https://servicii-locale3.grok.me/" target="_blank" rel="noopener noreferrer"><img class="cover" src="https://servicii-locale3.grok.me/og.jpg" alt=""><h3>🧰 Servicii Locale</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Meserii de încredere, lângă tine</p><ul><li>10 meserii: electrician, instalator, tapițer, frizer, zugrav, tâmplar, mecanic auto, curățenie, grădinar, transport</li><li>Profile cu tarif, recenzii, programări și mesaje</li><li>Meseriașii își pun pagina gratuit</li><li>Toată România — cauți după oraș</li><li>Banner Aprozar + reclame pe loc, zile și secunde</li></ul></a>
-<a class="card card-link" href="https://bloom-falcon-zephyr-atlas.grok.me/" target="_blank" rel="noopener noreferrer"><img class="cover" src="https://bloom-falcon-zephyr-atlas.grok.me/og.jpg" alt=""><h3>🍅 Produse Românești</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Fabricat aici — de la zacusca la unelte</p><ul><li>Ateliere și producători verificați, doar marfă din România</li><li>Cămara, haine, casă, unelte, artizanat</li><li>Coș, liste de comenzi, recenzii, favorite</li><li>Ghid AI pentru urcare, distribuitori și sponsori</li><li>Admin: moderare, categorii, fabricat în RO</li></ul></a>
-<a class="card card-link" href="https://cluj1313.github.io/ciubi-trading-companion3/" target="_blank" rel="noopener noreferrer"><img class="cover" src="trading-cover.jpg" alt="Ciubi Trading Companion"><h3>📈 Ciubi Trading Companion</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Asistentul de disciplină al traderului</p><ul><li>Plan pre-trade cu checklist SMC</li><li><b>Funded Shield</b>: limită zilnică & drawdown cu alertă STOP</li><li>Alerte live (preț, sesiuni, lumânări)</li><li>Jurnal cu poze, curbă equity, CSV</li><li>Calculator poziție + review zilnic</li><li>PWA instalabilă pe telefon</li></ul></a>
-</div>
-</div>
+<main class="wrap">
+  <section class="section" id="ideea">
+    <p class="sec-label">01 — De ce există</p>
+    <h2>Oamenii sunt aici. Nu se găsesc unii pe alții.</h2>
+    <div class="prose">
+      <p>Fermierul vinde prin intermediari. Meseriașul e îngropat în grupuri de Facebook. Atelierul din provincie nu ajunge la cumpărător. Traderul român își pierde contul pe grabă, nu pe lipsă de analiză.</p>
+      <p>Ciubi e locul unde se întâlnesc — gândit pentru sate, orașe mici și ateliere reale, nu pentru un marketplace global care îi tratează ca pe SKU-uri.</p>
+    </div>
+  </section>
 
-<div class="section">
-<h2>De ce funcționează — circuitul ecosistemului</h2>
-<p style="color:var(--mut);font-size:.9rem;">Fiecare aplicație rezolvă o nevoie reală, iar împreună formează un <b>circuit de încredere locală</b>:</p>
-<div class="eco">
-<a class="p" href="https://ever-prism-birch-garden.grok.me/" target="_blank" rel="noopener noreferrer">🥕 Aprozar</a>
-<a class="m" href="https://servicii-locale3.grok.me/" target="_blank" rel="noopener noreferrer">🧰 Servicii</a>
-<a class="b" href="https://bloom-falcon-zephyr-atlas.grok.me/" target="_blank" rel="noopener noreferrer">🍅 Produse</a>
-<a class="t" href="https://cluj1313.github.io/ciubi-trading-companion3/" target="_blank" rel="noopener noreferrer">📈 Trading</a>
-</div>
-<p style="font-size:.88rem;text-align:center;color:var(--mut);margin-bottom:20px;">Traderul cumpără de la Aprozar · fermierul ia unelte de pe Produse Românești · atelierul angajează un instalator de pe Servicii Locale · meșteșugarul își ține disciplina cu Trading Companion.</p>
+  <section class="section" id="circuit" style="padding-top:0">
+    <p class="sec-label">02 — Cum se leagă</p>
+    <h2>O zi în circuit</h2>
+    <p class="prose">Nu sunt patru aplicații puse una lângă alta. Sunt patru uși către aceeași lume. Iată cum arată, pe bune:</p>
+    <ol class="story">
+      <li style="--c:var(--port)">
+        <span class="when">Dimineața · Trading</span>
+        <h3>Planul înainte de prima tranzacție</h3>
+        <p>Un trader din Cluj își face checklist-ul în Companion, își pune limita zilnică, apoi iese din ecran. Disciplina e gata înainte să se miște prețul.</p>
+      </li>
+      <li style="--c:var(--verde)">
+        <span class="when">Prânzul · Aprozar</span>
+        <h3>Roșii de la o fermă, nu de la un depozit</h3>
+        <p>Comandă de pe Aprozar — producătorul e pe hartă, cu povestea lui. Fără teză de supermarket. Fără intermediar care ia marja.</p>
+      </li>
+      <li style="--c:var(--bordo)">
+        <span class="when">După-amiaza · Produse</span>
+        <h3>Fermierul își ia uneltele de aici</h3>
+        <p>Aceeași săptămână, ferma cumpără de pe Produse Românești: marfă verificată, fabricată în țară — de la zacusca din cămară la scule din atelier.</p>
+      </li>
+      <li style="--c:var(--maro)">
+        <span class="when">Seara · Servicii</span>
+        <h3>Atelierul cheamă un electrician</h3>
+        <p>Nu dă 15 telefoane. Caută după oraș, vede tarif și recenzii, programează. Iar meseriașul, dacă vrea, își ține disciplina tot în Companion.</p>
+      </li>
+    </ol>
+  </section>
 
-<div class="grid-3">
-<div class="card"><h3>🔁 Cross-promo</h3><p style="font-size:.85rem;color:var(--mut);">Fiecare aplicație are un banner către celelalte. Utilizatorul rămâne în ecosistem.</p></div>
-<div class="card"><h3>🎨 Identitate unitară</h3><p style="font-size:.85rem;color:var(--mut);">Portocaliu = trading · Verde = hrană · Maro = servicii · Bordo = fabricat aici.</p></div>
-<div class="card"><h3>🇷🇴 Construit în România</h3><p style="font-size:.85rem;color:var(--mut);">Totul e gândit pentru sate, orașe mici și ateliere reale.</p></div>
-</div>
-</div>
+  <section class="section" id="apps" style="padding-top:8px">
+    <p class="sec-label">03 — Cele patru aplicații</p>
+    <h2>Fiecare rezolvă o nevoie reală. Împreună țin utilizatorul în ecosistem.</h2>
+    <div class="grid two">
+      <a class="prod" style="--c:var(--verde)" href="https://ever-prism-birch-garden.grok.me/">
+        <div class="cover-wrap">
+          <img class="cover" src="https://ever-prism-birch-garden.grok.me/og.jpg" alt="">
+          <span class="prod-tag">Live</span>
+        </div>
+        <div class="prod-body">
+          <p class="prod-kicker">Hrană</p>
+          <h3>Aprozar Românesc</h3>
+          <p class="prod-lead">Piața satului, fără intermediari. Producătorul e o persoană, nu un SKU.</p>
+          <ul>
+            <li>Ferme pe hartă și „Poveștile fermierilor”</li>
+            <li>Fructe, legume, lactate, cereale</li>
+            <li>Sponsor activ: <b>Dor de Casă</b> — 300+ magazine</li>
+            <li>Update major în curând</li>
+          </ul>
+          <span class="go">Deschide aplicația →</span>
+        </div>
+      </a>
+      <a class="prod" style="--c:var(--maro)" href="https://servicii-locale3.grok.me/">
+        <div class="cover-wrap">
+          <img class="cover" src="https://servicii-locale3.grok.me/og.jpg" alt="">
+          <span class="prod-tag">Live</span>
+        </div>
+        <div class="prod-body">
+          <p class="prod-kicker">Meserii</p>
+          <h3>Servicii Locale</h3>
+          <p class="prod-lead">Meseriașul își pune pagina gratuit. Tu cauți după oraș, nu prin noroc.</p>
+          <ul>
+            <li>10 meserii — de la electrician la grădinar</li>
+            <li>Tarif, recenzii, programări, mesaje</li>
+            <li>Toată România, filtru pe oraș</li>
+            <li>Banner Aprozar + reclame pe loc, zile, secunde</li>
+          </ul>
+          <span class="go">Deschide aplicația →</span>
+        </div>
+      </a>
+      <a class="prod" style="--c:var(--bordo)" href="https://bloom-falcon-zephyr-atlas.grok.me/">
+        <div class="cover-wrap">
+          <img class="cover" src="https://bloom-falcon-zephyr-atlas.grok.me/og.jpg" alt="">
+          <span class="prod-tag">Live</span>
+        </div>
+        <div class="prod-body">
+          <p class="prod-kicker">Fabricat aici</p>
+          <h3>Produse Românești</h3>
+          <p class="prod-lead">De la zacusca din cămară la uneltele din atelier. Doar marfă din România.</p>
+          <ul>
+            <li>Ateliere și producători verificați</li>
+            <li>Cămara, haine, casă, unelte, artizanat</li>
+            <li>Coș, comenzi, recenzii, favorite</li>
+            <li>Ghid AI pentru urcare, distribuitori, sponsori</li>
+          </ul>
+          <span class="go">Deschide aplicația →</span>
+        </div>
+      </a>
+      <a class="prod" style="--c:var(--port)" href="https://cluj1313.github.io/ciubi-trading-companion3/">
+        <div class="cover-wrap">
+          <img class="cover" src="trading-cover.jpg" alt="Ciubi Trading Companion">
+          <span class="prod-tag">Live · PWA</span>
+        </div>
+        <div class="prod-body">
+          <p class="prod-kicker">Disciplină</p>
+          <h3>Trading Companion</h3>
+          <p class="prod-lead">Nu e un broker. E asistentul care te oprește înainte să-ți rupi contul.</p>
+          <ul>
+            <li>Plan pre-trade cu checklist SMC</li>
+            <li><b>Funded Shield</b> — limită zilnică, drawdown, alertă STOP</li>
+            <li>Alerte live, jurnal cu poze, curbă equity, CSV</li>
+            <li>Calculator de poziție + review zilnic</li>
+          </ul>
+          <span class="go">Deschide aplicația →</span>
+        </div>
+      </a>
+    </div>
 
-<div class="section">
-<h2>Cifre & stadiu actual</h2>
-<div class="stats">
-<div class="stat"><b>+7.3R</b><small>performanță în Trading Companion</small></div>
-<div class="stat"><b>30+</b><small>produse fabricate pe raft</small></div>
-<div class="stat"><b>1</b><small>sponsor activ (Dor de Casă)</small></div>
-<div class="stat"><b>10</b><small>meserii pe Servicii Locale</small></div>
-</div>
-<p style="font-size:.85rem;color:var(--mut);margin-top:16px;text-align:center;">Toate patru aplicațiile sunt prototipuri funcționale, publicate și testate pe telefon, construite fără buget. Următorul pas este scalarea — exact ceea ce finanțează un sponsor.</p>
-</div>
+    <div class="why">
+      <article>
+        <h3>Cross-promo, nu speranță</h3>
+        <p>Fiecare aplicație are un banner către celelalte. Utilizatorul nu pleacă. Rămâne în circuit — și vede de fiecare dată și sponsorul.</p>
+      </article>
+      <article>
+        <h3>Patru culori, o identitate</h3>
+        <p>Verde = hrană. Maro = meserii. Bordo = fabricat aici. Portocaliu = trading. Recunoști ecosistemul dintr-o privire.</p>
+      </article>
+      <article>
+        <h3>Construit în România</h3>
+        <p>Nu e un template tradus. E gândit pentru cum se cumpără, se repară și se vinde aici — în sat, în orașul mic, în atelier.</p>
+      </article>
+    </div>
+  </section>
 
-<div class="section">
-<h2>Ce finanțează sponsorul — roadmap concret</h2>
-<ol class="roadmap">
-<li><b>Conturi & sincronizare în cloud</b> — datele utilizatorilor, sigure, pe orice device.</li>
-<li><b>Notificări push</b> — alertele funcționează și cu aplicația închisă.</li>
-<li><b>Domenii proprii .ro</b> — identitate profesională pentru toate patru aplicațiile.</li>
-<li><b>Campanie de lansare coordonată</b> — promovare simultană în patru comunități.</li>
-<li><b>Extindere națională</b> — Aprozar și Produse pe toată țara, Servicii Locale în 10 orașe.</li>
-</ol>
-</div>
+  <section class="section" style="padding-top:8px">
+    <p class="sec-label">04 — Stadiul actual</p>
+    <h2>Ce e gata, azi, fără buget</h2>
+    <div class="stats">
+      <div class="stat"><b>4</b><small>aplicații live, testate pe telefon</small></div>
+      <div class="stat"><b>+7.3R</b><small>performanță în Trading Companion</small></div>
+      <div class="stat"><b>30+</b><small>produse fabricate pe raft</small></div>
+      <div class="stat"><b>10</b><small>meserii pe Servicii Locale</small></div>
+    </div>
+    <p class="note">Un sponsor activ e deja înăuntru: <b>Dor de Casă</b>, cu banner propriu și butoane către magazine. Prototipurile rulează. Următorul pas e scala.</p>
+  </section>
 
-<div class="section">
-<h2>Pachete de sponsorizare</h2>
-<div class="pack"><h3>🏆 Partener Fondator</h3><p style="font-size:.85rem;color:var(--mut);">Logo pe pagina principală în <b>TOATE PATRU</b> aplicațiile + banner dedicat + mențiune în materiale, 12 luni.</p><div class="price">Ofertă personalizată</div></div>
-<div class="pack"><h3>🤝 Partener</h3><p style="font-size:.85rem;color:var(--mut);">Banner rotativ în două dintre aplicații + prezentare dedicată, 6 luni.</p><div class="price">Ofertă personalizată</div></div>
-<div class="pack"><h3>🌱 Susținător</h3><p style="font-size:.85rem;color:var(--mut);">Mențiune permanentă în secțiunea „Despre" a unei aplicații + recunoștință publică.</p><div class="price">Ofertă personalizată</div></div>
-<p style="font-size:.8rem;color:var(--mut);margin-top:10px;">Model dovedit: sponsorul <b>Dor de Casă</b> este deja integrat în Aprozar Românesc, cu banner propriu și butoane către magazinele sale.</p>
-</div>
+  <section class="section" id="partener" style="padding-top:8px">
+    <p class="sec-label">05 — Ce câștigă partenerul</p>
+    <h2>Nu cumperi un spațiu. Cumperi patru comunități care se văd zilnic.</h2>
+    <ol class="gain">
+      <li><span class="num">1</span><span>Logo și prezență în fața fermierilor, meseriașilor, atelierelor și traderilor — audiențe care nu stau pe același feed.</span></li>
+      <li><span class="num">2</span><span>Model deja dovedit: Dor de Casă e live în Aprozar, cu banner și drum direct către 300+ magazine.</span></li>
+      <li><span class="num">3</span><span>Identitate de Partener Fondator. Nu o reclamă care dispare după o lună — un loc în povestea de lansare.</span></li>
+      <li><span class="num">4</span><span>Cross-promo: cine intră pe o aplicație ajunge, inevitabil, și în celelalte. Asta înmulțește afișările, nu le împarte.</span></li>
+    </ol>
+  </section>
 
-<div class="contact">
-<h2 style="color:#fff;">📬 Contact</h2>
-<p style="margin-top:12px;"><b>Nume:</b> Cioban Iosif Gabriel</p>
-<p><b>Email:</b> <a href="mailto:cluj1313@gmail.com" target="_blank" rel="noopener noreferrer">cluj1313@gmail.com</a></p>
-<p><b>Telefon / WhatsApp:</b> <a href="https://wa.me/40770148119" target="_blank" rel="noopener noreferrer">0770 148 119</a></p>
-<p style="margin-top:16px;font-size:.85rem;"><b>Link-uri live:</b> <a href="https://ever-prism-birch-garden.grok.me/" target="_blank" rel="noopener noreferrer">Aprozar Românesc</a> · <a href="https://servicii-locale3.grok.me/" target="_blank" rel="noopener noreferrer">Servicii Locale</a> · <a href="https://bloom-falcon-zephyr-atlas.grok.me/" target="_blank" rel="noopener noreferrer">Produse Românești</a> · <a href="https://cluj1313.github.io/ciubi-trading-companion3/" target="_blank" rel="noopener noreferrer">Trading Companion</a></p>
-</div>
+  <section class="section" style="padding-top:8px">
+    <p class="sec-label">06 — Unde se duc banii</p>
+    <h2>Roadmap concret, nu o listă de vise</h2>
+    <ol class="roadmap">
+      <li><b>Conturi și cloud.</b> Datele utilizatorului, sigure, pe orice device — ca să nu se piardă jurnalul, coșul sau programarea.</li>
+      <li><b>Notificări push.</b> Alertele de preț, de comandă și de meserie ajung și cu aplicația închisă.</li>
+      <li><b>Domenii proprii .ro.</b> Identitate profesională pentru toate patru. Nu mai arată a prototip, arată a brand.</li>
+      <li><b>Lansare coordonată.</b> O campanie simultană în patru comunități, cu partenerul în prim-plan.</li>
+      <li><b>Extindere națională.</b> Aprozar și Produse pe toată țara. Servicii Locale în 10 orașe.</li>
+    </ol>
+  </section>
+
+  <section class="section" style="padding-top:8px">
+    <p class="sec-label">07 — Pachete</p>
+    <h2>Trei praguri. Un loc de fondator.</h2>
+    <div class="packs">
+      <article class="pack feat">
+        <span class="badge">Recomandat · 12 luni</span>
+        <h3>Partener Fondator</h3>
+        <p>Logo pe pagina principală în <b>toate patru</b> aplicațiile, banner dedicat și mențiune în materialele de lansare. Ești în poveste, nu în subsol.</p>
+        <div class="price">Ofertă personalizată</div>
+      </article>
+      <article class="pack">
+        <span class="badge" style="color:var(--maro)">6 luni</span>
+        <h3>Partener</h3>
+        <p>Banner rotativ în două dintre aplicații și o prezentare dedicată. Prezență clară, pe o durată care se vede.</p>
+        <div class="price">Ofertă personalizată</div>
+      </article>
+      <article class="pack">
+        <span class="badge" style="color:var(--verde)">Permanent</span>
+        <h3>Susținător</h3>
+        <p>Mențiune în secțiunea „Despre” a unei aplicații și recunoștință publică. Pentru cine vrea să fie acolo de la început.</p>
+        <div class="price">Ofertă personalizată</div>
+      </article>
+    </div>
+    <p class="proof">Modelul e deja în producție: <b>Dor de Casă</b> e integrat în Aprozar Românesc — banner propriu, butoane către magazine. Nu e un mockup.</p>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="sec-label" style="color:#e8c9a0">08 — Următorul pas</p>
+    <h2>Hai să vorbim 15 minute.</h2>
+    <p class="prose">Dacă vrei să vezi aplicațiile pe telefon, să discutăm pachetul sau să-ți arăt cum arată un banner de partener — un mesaj e de ajuns.</p>
+    <div class="rows">
+      <p><b>Nume</b> Cioban Iosif Gabriel</p>
+      <p><b>Email</b> <a href="mailto:cluj1313@gmail.com">cluj1313@gmail.com</a></p>
+      <p><b>WhatsApp</b> <a href="https://wa.me/40770148119">0770 148 119</a></p>
+    </div>
+    <p class="live-links">
+      Live:
+      <a href="https://ever-prism-birch-garden.grok.me/">Aprozar</a> ·
+      <a href="https://servicii-locale3.grok.me/">Servicii</a> ·
+      <a href="https://bloom-falcon-zephyr-atlas.grok.me/">Produse</a> ·
+      <a href="https://cluj1313.github.io/ciubi-trading-companion3/">Trading</a>
+    </p>
+  </section>
+</main>
 
 <footer>Ciubi · Construit în România · 2026</footer>
-</div>
 </body>
 </html>
