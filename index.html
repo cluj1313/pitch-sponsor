@@ -7,8 +7,8 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <script>
 (function () {
-  if (location.search.indexOf("v=pr5") === -1) {
-    location.replace("./?v=pr5");
+  if (location.search.indexOf("v=pr6") === -1) {
+    location.replace("./?v=pr6");
     return;
   }
   if ("serviceWorker" in navigator) {
@@ -48,6 +48,7 @@ h1,h2,h3{color:var(--ink);margin-bottom:8px;}
 .section{margin:30px 0;}
 .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:16px;}
 .card{background:#fff;border:1px solid #e5e5e5;border-radius:14px;padding:18px;}
+.card .cover{width:100%;height:112px;object-fit:cover;border-radius:10px;margin-bottom:8px;display:block;background:#eee;}
 .card h3{font-size:1rem;margin-bottom:8px;}
 .card ul{font-size:.85rem;color:var(--mut);padding-left:20px;}
 .card li{margin:4px 0;}
@@ -93,10 +94,10 @@ footer{text-align:center;color:var(--mut);font-size:.75rem;margin-top:20px;}
 <div class="section">
 <h2>Cele patru produse</h2>
 <div class="grid-3">
-<a class="card card-link" href="https://ever-prism-birch-garden.grok.me/" target="_blank" rel="noopener noreferrer"><h3>🥕 Aprozar Românesc</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Piața satului, fără intermediari</p><ul><li>Producători și ferme pe hartă</li><li>„Poveștile fermierilor" — autentic</li><li>Categorii: fructe, legume, lactate, cereale</li><li>Sponsor activ: <b>Dor de Casă</b> (300+ magazine)</li><li>🚀 <b>UPDATE major în curând</b></li></ul></a>
-<a class="card card-link" href="https://servicii-locale3.grok.me/" target="_blank" rel="noopener noreferrer"><h3>🧰 Servicii Locale</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Meserii de încredere, lângă tine</p><ul><li>10 meserii: electrician, instalator, tapițer, frizer, zugrav, tâmplar, mecanic auto, curățenie, grădinar, transport</li><li>Profile cu tarif, recenzii, programări și mesaje</li><li>Meseriașii își pun pagina gratuit</li><li>Toată România — cauți după oraș</li><li>Banner Aprozar + reclame pe loc, zile și secunde</li></ul></a>
-<a class="card card-link" href="https://bloom-falcon-zephyr-atlas.grok.me/" target="_blank" rel="noopener noreferrer"><h3>🍅 Produse Românești</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Fabricat aici — de la zacusca la unelte</p><ul><li>Ateliere și producători verificați, doar marfă din România</li><li>Cămara, haine, casă, unelte, artizanat</li><li>Coș, liste de comenzi, recenzii, favorite</li><li>Ghid AI pentru urcare, distribuitori și sponsori</li><li>Admin: moderare, categorii, fabricat în RO</li></ul></a>
-<a class="card card-link" href="https://cluj1313.github.io/ciubi-trading-companion3/" target="_blank" rel="noopener noreferrer"><h3>📈 Ciubi Trading Companion</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Asistentul de disciplină al traderului</p><ul><li>Plan pre-trade cu checklist SMC</li><li><b>Funded Shield</b>: limită zilnică & drawdown cu alertă STOP</li><li>Alerte live (preț, sesiuni, lumânări)</li><li>Jurnal cu poze, curbă equity, CSV</li><li>Calculator poziție + review zilnic</li><li>PWA instalabilă pe telefon</li></ul></a>
+<a class="card card-link" href="https://ever-prism-birch-garden.grok.me/" target="_blank" rel="noopener noreferrer"><img class="cover" src="https://ever-prism-birch-garden.grok.me/og.jpg" alt=""><h3>🥕 Aprozar Românesc</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Piața satului, fără intermediari</p><ul><li>Producători și ferme pe hartă</li><li>„Poveștile fermierilor" — autentic</li><li>Categorii: fructe, legume, lactate, cereale</li><li>Sponsor activ: <b>Dor de Casă</b> (300+ magazine)</li><li>🚀 <b>UPDATE major în curând</b></li></ul></a>
+<a class="card card-link" href="https://servicii-locale3.grok.me/" target="_blank" rel="noopener noreferrer"><img class="cover" src="https://servicii-locale3.grok.me/og.jpg" alt=""><h3>🧰 Servicii Locale</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Meserii de încredere, lângă tine</p><ul><li>10 meserii: electrician, instalator, tapițer, frizer, zugrav, tâmplar, mecanic auto, curățenie, grădinar, transport</li><li>Profile cu tarif, recenzii, programări și mesaje</li><li>Meseriașii își pun pagina gratuit</li><li>Toată România — cauți după oraș</li><li>Banner Aprozar + reclame pe loc, zile și secunde</li></ul></a>
+<a class="card card-link" href="https://bloom-falcon-zephyr-atlas.grok.me/" target="_blank" rel="noopener noreferrer"><img class="cover" src="https://bloom-falcon-zephyr-atlas.grok.me/og.jpg" alt=""><h3>🍅 Produse Românești</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Fabricat aici — de la zacusca la unelte</p><ul><li>Ateliere și producători verificați, doar marfă din România</li><li>Cămara, haine, casă, unelte, artizanat</li><li>Coș, liste de comenzi, recenzii, favorite</li><li>Ghid AI pentru urcare, distribuitori și sponsori</li><li>Admin: moderare, categorii, fabricat în RO</li></ul></a>
+<a class="card card-link" href="https://cluj1313.github.io/ciubi-trading-companion3/" target="_blank" rel="noopener noreferrer"><span class="cover" style="background:linear-gradient(135deg,#e85d04,#f48c06);height:112px;border-radius:10px;margin-bottom:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;">📈 Trading</span><h3>📈 Ciubi Trading Companion</h3><p style="font-size:.8rem;color:var(--mut);margin-bottom:8px;">Asistentul de disciplină al traderului</p><ul><li>Plan pre-trade cu checklist SMC</li><li><b>Funded Shield</b>: limită zilnică & drawdown cu alertă STOP</li><li>Alerte live (preț, sesiuni, lumânări)</li><li>Jurnal cu poze, curbă equity, CSV</li><li>Calculator poziție + review zilnic</li><li>PWA instalabilă pe telefon</li></ul></a>
 </div>
 </div>
 
