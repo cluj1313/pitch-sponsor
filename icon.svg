@@ -1,9 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-<rect width="512" height="512" rx="100" fill="#0f1729"/>
-<line x1="140" y1="120" x2="140" y2="400" stroke="#3ee6a6" stroke-width="16"/>
-<rect x="108" y="200" width="64" height="120" rx="14" fill="#3ee6a6"/>
-<line x1="256" y1="100" x2="256" y2="380" stroke="#fb7185" stroke-width="16"/>
-<rect x="224" y="160" width="64" height="140" rx="14" fill="#fb7185"/>
-<line x1="372" y1="140" x2="372" y2="420" stroke="#f5a623" stroke-width="16"/>
-<rect x="340" y="220" width="64" height="120" rx="14" fill="#f5a623"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Ciubi">
+  <rect width="32" height="32" rx="8" fill="#1A1410"/>
+  <!-- Toiag de cioban care citește ca litera C -->
+  <path d="M22.5 8.2c-6.4 0-10.6 3.6-10.6 8.3 0 4.7 4.2 8.3 10.6 8.3" fill="none" stroke="#E8C9A0" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M11.9 16.5v8.8" fill="none" stroke="#E8C9A0" stroke-width="3.2" stroke-linecap="round"/>
+  <circle cx="11.9" cy="26.6" r="1.7" fill="#B8860B"/>
 </svg>
