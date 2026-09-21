@@ -83,6 +83,7 @@ h2{font-family:var(--serif);font-weight:650;font-size:1.35rem;line-height:1.25;m
   border-top:3px solid var(--c);
 }
 .card img{width:100%;height:138px;object-fit:cover;object-position:top center;background:#e8dfd0}
+.card img.full{object-fit:contain;background:#111;height:158px}
 .body{padding:12px 14px 14px}
 .tag{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--c)}
 .card h3{font-family:var(--serif);font-size:1.18rem;margin:2px 0 4px}
@@ -93,6 +94,7 @@ h2{font-family:var(--serif);font-weight:650;font-size:1.35rem;line-height:1.25;m
 @media(min-width:860px){
   .vein{display:grid;grid-template-columns:1fr 1fr;gap:16px 20px}
   .card img{height:168px}
+  .card img.full{height:188px}
 }
 .cta{
   margin:8px 18px 28px;background:var(--ink);color:#F6F1E8;border-radius:18px;padding:22px 18px;
@@ -198,7 +200,7 @@ h2{font-family:var(--serif);font-weight:650;font-size:1.35rem;line-height:1.25;m
 
       <div class="node soon" style="--c:#A67C52">
         <article class="card">
-          <img src="job-h28.jpg" alt="Job de o zi">
+          <img class="full" src="job-full.jpg" alt="Job de o zi">
           <div class="body">
             <p class="tag">Treabă pe zi · în curând</p>
             <h3>Job de o zi</h3>
