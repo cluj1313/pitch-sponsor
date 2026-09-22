@@ -9,7 +9,13 @@
 .sm-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}
 .sm-head h2{font-family:var(--serif);font-size:1.28rem;margin:0;flex:1}
 .sm-x{border:1px solid var(--line);background:var(--card);width:36px;height:36px;border-radius:10px;font-size:1.1rem;line-height:1;cursor:pointer;color:var(--soft)}
-.sm-step{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:8px}
+.sm-step{font-size:.88rem;font-weight:600;color:var(--ink);margin:0 0 12px;line-height:1.35;letter-spacing:0;text-transform:none}
+.sm-step-n{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-right:4px}
+.sm-label{display:block;font-size:.82rem;font-weight:700;color:var(--ink);margin:0 0 6px}
+.sm-hint{font-size:.82rem;color:var(--mut);margin:0 0 10px;line-height:1.35}
+.sm-field-row{display:flex;align-items:center;gap:10px}
+.sm-field-row .sm-field{flex:1;min-width:0}
+.sm-count{flex:none;font-variant-numeric:tabular-nums;font-size:.85rem;font-weight:700;color:var(--gold);letter-spacing:.04em;min-width:2.6em;text-align:right}
 .sm-field{width:100%;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:1.05rem;font-family:var(--sans);color:var(--ink);outline:none;letter-spacing:.04em}
 .sm-field:focus{border-color:var(--gold)}
 .sm-field.thin{font-weight:300;letter-spacing:.12em}
